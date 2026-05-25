@@ -16,7 +16,6 @@ const VILLA_IMAGES = [
 ];
 
 const AIRPORTS = {
-  RIC: { name: 'Richmond', lat: 37.5052, lng: -77.3197 },
   IAD: { name: 'Washington Dulles', lat: 38.9531, lng: -77.4565 },
   PLS: { name: 'Providenciales', lat: 21.7736, lng: -72.2659 },
 };
@@ -25,34 +24,45 @@ const VILLA = { lat: 21.7480, lng: -72.2886, name: 'Blue Chill Villa' };
 
 // --- Restaurant Data with distances from villa ---
 const RESTAURANTS = [
-  { id: 'lasbrisas', name: 'Las Brisas', type: 'both', lat: 21.7445, lng: -72.2832, rating: 4.4, reviews: 2159, price: '$$-$$$', distance: '0.6 mi', driveTime: 'Walkable', nearby: true, pizza: true, cuisine: 'Mediterranean-Caribbean' },
+  { id: 'lasbrisas', name: 'Las Brisas', type: 'both', lat: 21.7445, lng: -72.2832, rating: 4.4, reviews: 2159, price: '$$-$$$', distance: '0.6 mi', driveTime: '2 min', nearby: true, pizza: true, hostRecommended: true, fbPick: true, cuisine: 'Mediterranean-Caribbean' },
   { id: 'bugaloos', name: "Bugaloo's Conch Crawl", type: 'dinner', lat: 21.7645, lng: -72.2610, rating: 4.4, reviews: 942, price: '$$-$$$', distance: '2.7 mi', driveTime: '5 min', nearby: true, cuisine: 'Conch & Seafood' },
   { id: 'sweetts', name: "Sweet T's", type: 'dinner', lat: 21.7760, lng: -72.2670, rating: 4.5, reviews: 283, price: '$', distance: '3.0 mi', driveTime: '6 min', nearby: true, cuisine: 'Fried Chicken' },
-  { id: 'omars', name: "Omar's Beach Hut", type: 'dinner', lat: 21.757, lng: -72.246, rating: 4.6, reviews: 734, price: '$$', distance: '3.5 mi', driveTime: '8 min', nearby: true, cuisine: 'Caribbean Seafood' },
-  { id: 'daconch', name: 'Da Conch Shack', type: 'dinner', lat: 21.7875, lng: -72.2566, rating: 4.4, reviews: 4200, price: '$$-$$$', distance: '4.3 mi', driveTime: '9 min', nearby: true, cuisine: 'Conch & Caribbean' },
+  { id: 'omars', name: "Omar's Beach Hut", type: 'dinner', lat: 21.757, lng: -72.246, rating: 4.6, reviews: 734, price: '$$', distance: '3.5 mi', driveTime: '8 min', nearby: true, hostRecommended: true, fbPick: true, cuisine: 'Caribbean Seafood' },
+  { id: 'daconch', name: 'Da Conch Shack', type: 'dinner', lat: 21.7875, lng: -72.2566, rating: 4.4, reviews: 4200, price: '$$-$$$', distance: '4.3 mi', driveTime: '9 min', nearby: true, hostRecommended: true, fbPick: true, cuisine: 'Conch & Caribbean' },
   { id: 'mangrovebay', name: 'Mangrove Bay', type: 'dinner', lat: 21.784, lng: -72.260, rating: 4.5, reviews: 350, price: '$-$$', distance: '5.0 mi', driveTime: '12 min', nearby: true, cuisine: 'Authentic TCI' },
+  { id: 'mangoreef', name: 'Mango Reef', type: 'dinner', lat: 21.7843, lng: -72.2279, rating: 4.5, reviews: 1110, price: '$$', distance: '6.0 mi', driveTime: '14 min', nearby: false, hostRecommended: true, fbPick: true, cuisine: 'Caribbean & International' },
+  { id: 'sharkbite', name: 'Sharkbite Bar & Grill', type: 'dinner', lat: 21.7905, lng: -72.2077, rating: 4.2, reviews: 1550, price: '$$', distance: '6.4 mi', driveTime: '14 min', nearby: false, fbPick: true, cuisine: 'Marina Bar Food' },
+  { id: 'magnolia', name: 'Magnolia Restaurant & Lounge', type: 'dinner', lat: 21.7878, lng: -72.2197, rating: 4.4, reviews: 986, price: '$$$', distance: '6.7 mi', driveTime: '15 min', nearby: false, hostRecommended: true, cuisine: 'Modern Coastal' },
+  { id: 'fishfry', name: 'Island Fish Fry', type: 'dinner', lat: 21.7858, lng: -72.2004, rating: 4.6, reviews: 500, price: '$$-$$$', distance: '7.0 mi', driveTime: '15 min', nearby: false, hostRecommended: true, cuisine: 'Local Food Event' },
   { id: 'baci', name: 'Baci Ristorante', type: 'dinner', lat: 21.790, lng: -72.210, rating: 4.5, reviews: 850, price: '$$', distance: '6.5 mi', driveTime: '14 min', nearby: false, pizza: true, cuisine: 'Italian' },
-  { id: 'mrgroupers', name: "Mr. Grouper's", type: 'dinner', lat: 21.790, lng: -72.196, rating: 4.4, reviews: 3000, price: '$-$$', distance: '7.0 mi', driveTime: '15 min', nearby: false, cuisine: 'Local TCI Seafood' },
+  { id: 'mrgroupers', name: "Mr. Grouper's", type: 'dinner', lat: 21.790, lng: -72.196, rating: 4.4, reviews: 3000, price: '$-$$', distance: '7.0 mi', driveTime: '15 min', nearby: false, fbPick: true, cuisine: 'Local TCI Seafood' },
   { id: 'lua', name: 'Lua Beach House', type: 'both', lat: 21.7745, lng: -72.2030, rating: 4.9, reviews: 120, price: '$$$', distance: '7.3 mi', driveTime: '15 min', nearby: false, pizza: true, cuisine: 'Global Fusion' },
-  { id: 'bluewater', name: 'Blue Water Bistro', type: 'dinner', lat: 21.797, lng: -72.199, rating: 4.9, reviews: 685, price: '$$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, cuisine: 'Caribbean Seafood' },
-  { id: 'cocovan', name: 'Cocovan', type: 'dinner', lat: 21.793, lng: -72.185, rating: 4.7, reviews: 1072, price: '$-$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, cuisine: 'Gourmet Street Food' },
+  { id: 'somewhere', name: 'Somewhere Cafe and Lounge', type: 'both', lat: 21.7854, lng: -72.2045, rating: 4.2, reviews: 857, price: '$$', distance: '7.5 mi', driveTime: '16 min', nearby: false, fbPick: true, cuisine: 'Tex-Mex / Caribbean Beachfront' },
+  { id: 'bluewater', name: 'Blue Water Bistro', type: 'dinner', lat: 21.797, lng: -72.199, rating: 4.9, reviews: 685, price: '$$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, cuisine: 'Caribbean Seafood' },
+  { id: 'cocovan', name: 'Cocovan', type: 'dinner', lat: 21.793, lng: -72.185, rating: 4.7, reviews: 1072, price: '$-$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, cuisine: 'Gourmet Street Food' },
   { id: 'baybistro', name: 'Bay Bistro', type: 'both', lat: 21.799, lng: -72.178, rating: 4.5, reviews: 3200, price: '$$-$$$', distance: '8.5 mi', driveTime: '20 min', nearby: false, cuisine: 'Caribbean Beachfront' },
   { id: 'caicosbakery', name: 'Caicos Bakery', type: 'breakfast', lat: 21.795, lng: -72.175, rating: 4.4, reviews: 1360, price: '$', distance: '8.5 mi', driveTime: '18 min', nearby: false, cuisine: 'French Bakery' },
-  { id: 'hemingways', name: "Hemingway's on the Beach", type: 'both', lat: 21.7951, lng: -72.1875, rating: 4.1, reviews: 3381, price: '$$', distance: '9.1 mi', driveTime: '18 min', nearby: false, cuisine: 'Caribbean Beachfront' },
-  { id: 'infiniti', name: 'Infiniti Restaurant & Raw Bar', type: 'dinner', lat: 21.799, lng: -72.173, rating: 4.5, reviews: 2971, price: '$$$', distance: '9.0 mi', driveTime: '20 min', nearby: false, cuisine: 'Sushi & Fine Dining' },
+  { id: 'hemingways', name: "Hemingway's on the Beach", type: 'both', lat: 21.7951, lng: -72.1875, rating: 4.1, reviews: 3381, price: '$$', distance: '9.1 mi', driveTime: '18 min', nearby: false, fbPick: true, cuisine: 'Caribbean Beachfront' },
+  { id: 'cabana', name: 'Cabana Bar at Ocean Club East', type: 'dinner', lat: 21.8000, lng: -72.1674, rating: 4.3, reviews: 620, price: '$$', distance: '9.3 mi', driveTime: '20 min', nearby: false, fbPick: true, cuisine: 'Casual Beach Bar' },
+  { id: 'turkskebab', name: 'Turks Kebab', type: 'dinner', lat: 21.7949, lng: -72.1773, rating: 4.5, reviews: 1100, price: '$', distance: '9.5 mi', driveTime: '19 min', nearby: false, fbPick: true, cuisine: 'Quick Casual Mediterranean' },
+  { id: 'infiniti', name: 'Infiniti Restaurant & Raw Bar', type: 'dinner', lat: 21.799, lng: -72.173, rating: 4.5, reviews: 2971, price: '$$$', distance: '9.0 mi', driveTime: '20 min', nearby: false, hostRecommended: true, cuisine: 'Sushi & Fine Dining' },
+  { id: 'opus', name: 'Opus Wine Bar & Grill', type: 'dinner', lat: 21.7987, lng: -72.1635, rating: 4.5, reviews: 717, price: '$$$', distance: '9.4 mi', driveTime: '20 min', nearby: false, pizza: true, hostRecommended: true, cuisine: 'Wine Bar & Grill' },
   { id: 'parallel23', name: 'Parallel 23', type: 'dinner', lat: 21.798, lng: -72.169, rating: 4.3, reviews: 1113, price: '$$$', distance: '9.0 mi', driveTime: '20 min', nearby: false, cuisine: 'Caribbean Fusion' },
   { id: 'provence', name: 'Provence by Eric', type: 'dinner', lat: 21.7950, lng: -72.1830, rating: 4.4, reviews: 1085, price: '$$$', distance: '9.4 mi', driveTime: '19 min', nearby: false, cuisine: 'French Fine Dining' },
-  { id: 'shay', name: 'Shay Cafe & Lounge', type: 'breakfast', lat: 21.7953, lng: -72.1826, rating: 4.6, reviews: 1000, price: '$', distance: '9.5 mi', driveTime: '19 min', nearby: false, cuisine: 'Cafe & Breakfast' },
+  { id: 'shay', name: 'Shay Cafe & Lounge', type: 'breakfast', lat: 21.7953, lng: -72.1826, rating: 4.6, reviews: 1000, price: '$', distance: '9.5 mi', driveTime: '19 min', nearby: false, fbPick: true, cuisine: 'Cafe & Breakfast' },
   { id: 'caicoscafe', name: 'Caicos Cafe', type: 'dinner', lat: 21.7955, lng: -72.1741, rating: 4.4, reviews: 1800, price: '$$-$$$', distance: '10.1 mi', driveTime: '20 min', nearby: false, cuisine: 'Italian-Caribbean' },
   { id: 'cocobistro', name: 'Coco Bistro', type: 'dinner', lat: 21.7960, lng: -72.1703, rating: 4.6, reviews: 5200, price: '$$$', distance: '10.4 mi', driveTime: '21 min', nearby: false, cuisine: 'Caribbean Fine Dining' },
   { id: 'coyaba', name: 'Coyaba Restaurant', type: 'dinner', lat: 21.7985, lng: -72.1707, rating: 4.5, reviews: 2100, price: '$$$', distance: '10.4 mi', driveTime: '21 min', nearby: false, cuisine: 'Caribbean Fusion' },
-  { id: 'bellaluna', name: 'Bella Luna Ristorante & Pizzeria', type: 'dinner', lat: 21.7935, lng: -72.1780, rating: 4.3, reviews: 1367, price: '$$-$$$', distance: '9.8 mi', driveTime: '20 min', nearby: false, pizza: true, cuisine: 'Italian Pizzeria' },
+  { id: 'bellaluna', name: 'Bella Luna Ristorante & Pizzeria', type: 'dinner', lat: 21.7935, lng: -72.1780, rating: 4.3, reviews: 1367, price: '$$-$$$', distance: '9.8 mi', driveTime: '20 min', nearby: false, pizza: true, fbPick: true, cuisine: 'Italian Pizzeria' },
+  { id: 'terrace', name: 'The Terrace on Grace Bay', type: 'both', lat: 21.7948, lng: -72.1784, rating: 4.2, reviews: 289, price: '$$-$$$', distance: '9.8 mi', driveTime: '20 min', nearby: false, pizza: true, hostRecommended: true, cuisine: 'Bar & Grill' },
+  { id: 'lemon2go', name: 'Lemon2Go', type: 'breakfast', lat: 21.7943, lng: -72.1768, rating: 4.5, reviews: 850, price: '$', distance: '9.8 mi', driveTime: '20 min', nearby: false, fbPick: true, cuisine: 'Coffee & Light Breakfast' },
   { id: 'pizzapizza', name: 'Pizza Pizza La Terrazza', type: 'dinner', lat: 21.7940, lng: -72.1750, rating: 4.0, reviews: 680, price: '$-$$', distance: '10.0 mi', driveTime: '20 min', nearby: false, pizza: true, cuisine: 'Pizza & Italian' },
 ];
 
 // --- Deep restaurant detail data ---
 const DETAILS = {
   lasbrisas: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as the closest scenic restaurant to the villa, about a 2-minute drive away, with beautiful Chalk Sound views and good breakfast, lunch, or dinner potential.',
     synopsis: 'Mediterranean-inspired cuisine with a Caribbean splash, overlooking the stunning turquoise waters of Chalk Sound National Park. Five chefs from Thailand, Philippines, Dominican Republic, Haiti, and TCI create an eclectic menu. The closest restaurant to the villa — just a short stroll down Chalk Sound Drive. Tiki torches, a waterfront gazebo, and a poolside bar make this the perfect sunset dinner spot.',
     familyNote: 'Excellent for families. Kayak, SUP, paddle boat, and canoe rentals on-site. Kids menu available. "Sushi on the Sound" is a family-friendly hit. Teens can explore while parents enjoy drinks on the deck. Lunch is casual; dinner is more upscale.',
     hours: 'Daily 9:00 AM - 10:00 PM',
@@ -105,6 +115,10 @@ const DETAILS = {
       { text: '"Fresh, expertly prepared, and absolutely spot on" — describing the sushi. The panoramic Chalk Sound views enhanced the complete dining experience.', author: 'Jay G.', date: 'May 2025', rating: 4 },
       { text: 'Found the mussels in garlic cream sauce exceptional. Visited multiple times during the trip, praising conch fritters and jerk chicken wrap.', author: 'Randy K.', date: 'August 2025', rating: 4 },
     ],
+    oliviaOptions: {
+      items: 'Specialty Pizzas, Chicken Fettuccine Alfredo, Filet Mignon, Rib-Eye Steak, French Fries',
+      source: { type: 'menu', url: 'https://neptunevillastci.com/wp-content/uploads/2026/01/Update-Las-Brisas-Menu-Nov-2025.pdf', note: null },
+    },
   },
 
   bugaloos: {
@@ -153,6 +167,115 @@ const DETAILS = {
       { text: '"The conch fritters were the best we\'ve had" and their daughter "loved the conch sushi roll." Food portions are large enough to share.', author: 'TripAdvisor Reviewer', date: '2024', rating: 4 },
       { text: 'Note: Some reviewers report service can be slow when busy — "waits of over an hour" before food. Food quality is high but service can be inconsistent.', author: 'Various', date: '2024-2025', rating: 3 },
     ],
+    oliviaOptions: {
+      items: 'Buga Burger, Chicken Fingers, French Fries, Baked Mac & Cheese',
+      source: { type: 'menu', url: 'https://www.bugaloostci.com/menus', note: null },
+    },
+  },
+
+  sharkbite: {
+    synopsis: "Sharkbite is a casual Turtle Cove marina bar and grill that came up repeatedly as a good-value, young-adult-friendly option. It is not fancy: think waterfront marina views, burgers, seafood baskets, drinks, and an easy place to feed hungry people without turning dinner into a formal event.",
+    familyNote: "Strong fit for a casual dinner with teens/young adults. The Facebook thread specifically called it very casual and fun, with a funky marina vibe that older kids and young adults tend to like.",
+    hours: 'Check current hours before going',
+    phone: '',
+    website: 'https://www.visittci.com/providenciales/sharkbite-bar-and-grill',
+    menuLink: '',
+    reservations: 'Usually casual/walk-in; call ahead for a larger group.',
+    address: 'Turtle Cove Marina, Providenciales',
+    perPerson: '$25-45',
+    menu: [
+      { section: 'Community Notes', items: [
+        { name: 'Casual bar food and seafood', price: '$$' },
+        { name: 'Good young-adult vibe near the marina', price: '' },
+        { name: 'Better for easy dinner than a splurge meal', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'Mentioned in the Facebook thread as a casual, funky, good option for young adults.', author: 'Facebook community thread', date: 'May 2026', rating: 4 },
+      { text: 'Multiple commenters paired Sharkbite with Mango Reef and Cocovan as less expensive favorites.', author: 'Facebook community thread', date: 'May 2026', rating: 4 },
+    ],
+    oliviaOptions: {
+      items: 'Burgers, fries, casual bar-food options',
+      source: { type: 'community note', url: '', note: 'Verify current menu before going.' },
+    },
+  },
+
+  cabana: {
+    synopsis: "Cabana Bar at Ocean Club East was recommended as a laid-back casual beach bar beside Grace Bay Beach, with a strong sunset setting and an easier-going feel than the resort fine-dining restaurants.",
+    familyNote: "Good for a relaxed Grace Bay beach meal or drinks/snacks with a view. This is more about atmosphere, beach access, and sunset than a chef-driven dinner.",
+    hours: 'Check current hours and music schedule',
+    phone: '',
+    website: 'https://www.oceanclubresorts.com/dining/',
+    menuLink: 'https://www.oceanclubresorts.com/dining/',
+    reservations: 'No reservation usually needed; check locally for music nights.',
+    address: 'Ocean Club East, Grace Bay',
+    perPerson: '$25-50',
+    menu: [
+      { section: 'Community Notes', items: [
+        { name: 'Casual beach bar beside Grace Bay Beach', price: '$$' },
+        { name: 'Recommended for sunset ambiance', price: '' },
+        { name: 'Music some nights', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'Recommended in the Facebook thread as a laid-back casual bar beside the beach with one of the best sunset settings on Grace Bay.', author: 'Facebook community thread', date: 'May 2026', rating: 4 },
+    ],
+    oliviaOptions: {
+      items: 'Casual beach-bar basics; verify menu',
+      source: { type: 'community note', url: '', note: 'Check the current Ocean Club East menu.' },
+    },
+  },
+
+  turkskebab: {
+    synopsis: "Turks Kebab is a quick, inexpensive Grace Bay option for kebabs, wraps, rice plates, and casual takeout-style meals. It came up as a budget-friendly way to feed people without needing a reservation.",
+    familyNote: "Very practical for a group: fast, filling, and cheaper than most sit-down Grace Bay dinners. Good backup when everyone is hungry after beach time.",
+    hours: 'Check current hours before going',
+    phone: '',
+    website: 'https://www.visittci.com/providenciales/turks-kebab',
+    menuLink: '',
+    reservations: 'No reservation. Quick casual.',
+    address: 'Grace Bay, Providenciales',
+    perPerson: '$15-30',
+    menu: [
+      { section: 'Community Notes', items: [
+        { name: 'Kebabs, wraps, and rice plates', price: '$' },
+        { name: 'Fast casual and budget friendly', price: '' },
+        { name: 'Good backup meal near Grace Bay', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'Recommended in the Facebook thread as a quick/casual, lower-cost food option.', author: 'Facebook community thread', date: 'May 2026', rating: 4 },
+    ],
+    oliviaOptions: {
+      items: 'Chicken wraps, fries, rice plates',
+      source: { type: 'community note', url: '', note: 'Verify current menu before going.' },
+    },
+  },
+
+  lemon2go: {
+    synopsis: "Lemon2Go is a Grace Bay coffee and light breakfast stop that came up in the breakfast recommendations near The Sands/Shay Cafe area. Best for coffee, pastries, grab-and-go breakfast, and a low-commitment morning.",
+    familyNote: "Good for a simple breakfast or coffee run rather than a full sit-down meal. Useful on mornings when the plan is beach-first.",
+    hours: 'Check current morning hours',
+    phone: '',
+    website: 'https://www.visittci.com/providenciales/lemon-2-go',
+    menuLink: '',
+    reservations: 'No reservation. Counter-service cafe.',
+    address: 'Grace Bay, Providenciales',
+    perPerson: '$8-20',
+    menu: [
+      { section: 'Community Notes', items: [
+        { name: 'Coffee and light breakfast', price: '$' },
+        { name: 'Good near Salt Mills / Grace Bay shopping', price: '' },
+        { name: 'Better for quick mornings than big breakfast', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'Mentioned in the Facebook thread as another breakfast option near The Sands after Shay Cafe and Hemingway\'s.', author: 'Facebook community thread', date: 'May 2026', rating: 4 },
+    ],
+    oliviaOptions: {
+      items: 'Pastries, smoothies, simple cafe items',
+      source: { type: 'community note', url: '', note: 'Verify current menu before going.' },
+    },
   },
 
   sweetts: {
@@ -181,16 +304,21 @@ const DETAILS = {
       { text: '"Best place on the island to get the cheapest food. Wings and fries combos starting at $3-$5."', author: 'Dame', date: 'July 2025', rating: 5 },
       { text: '"The best tasting fried chicken I\'ve had in a long long time" and "chicken seasoned and fried to perfection."', author: 'Multiple Reviewers', date: '2024-2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Plain Fries, Seasoned Fries',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/sweet-t', note: null },
+    },
   },
 
   daconch: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as an island favorite for local food with Caribbean influences. Host also noted live music on Wednesday and Sunday nights, with reservations needed for large parties.',
     synopsis: 'Iconic beach bar and restaurant on Blue Hills Beach, famous for its conch prepared every way and legendary rum punch. Picnic tables under coconut palms, feet in the sand, turquoise water steps away. The Wednesday night Junkanoo party with the We Funk band, fire dancers, and DJ is a signature TCI experience.',
     familyNote: 'Excellent for families. Reviewers call it "super kid friendly with lots of things for kids to do like tiki toss and a tire swing." The Wednesday night Junkanoo party would be a memorable experience for both teens. Beach setting is relaxed and unpretentious.',
     hours: 'Daily 11:00 AM - 9:00 PM',
     phone: '+1 (649) 946-8877',
     email: 'info@daconchshack.com',
     website: 'https://daconchshack.com/',
-    menuLink: 'https://daconchshack.com/',
+    menuLink: 'https://daconchshack.com/menu/',
     reservations: 'Walk-ins welcome ("Just come on in!"). REQUIRED for Wednesdays (Junkanoo) and parties of 6+.',
     address: 'Blue Hills Road, Blue Hills Beach',
     instagram: 'https://www.instagram.com/daconchshack/',
@@ -224,6 +352,10 @@ const DETAILS = {
       { text: '"The food is always fresh and the atmosphere is everything especially when Jamesly is serving" — praised his "upbeat presence makes the experience even better."', author: 'TripAdvisor Reviewer', date: '2025', rating: 5 },
       { text: 'Had the conch appetizer, jerk chicken, ribs and grilled shrimp. "Everything was fresh and delicious." Found the grouper "out of this world delicious."', author: 'TripAdvisor Reviewer', date: '2024', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Da Conch Shack Burger, Chicken Strips, Macaroni & Cheese, French Fries',
+      source: { type: 'menu', url: 'https://daconchshack.com/menu/', note: null },
+    },
   },
 
   lua: {
@@ -296,6 +428,10 @@ const DETAILS = {
       { text: '"The staff, the atmosphere, the food... everything was just amazing. The sunset was just as spectacular as the food, true fine dining but still relaxed calm atmosphere."', author: 'TripAdvisor Family', date: 'July 2025', rating: 5 },
       { text: 'Highlighted the soba noodle salad starter, jumbo prawns "cooked perfectly." Called it "our best dinner experience while on island" with "fabulous food, fantastic setting, and impeccable service."', author: 'TripAdvisor Reviewer', date: '2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Margherita Pizza, Pepperoni Pizza, Spaghetti, Chicken Fingers, Burger',
+      source: { type: 'menu', url: 'https://southbank.gracebayresorts.com/lua-menus/', note: null },
+    },
   },
 
   hemingways: {
@@ -348,7 +484,7 @@ const DETAILS = {
         { name: 'Surf N\' Turf', price: '$75' },
       ]},
       { section: 'Kids Menu (12 & under)', items: [
-        { name: 'Pasta / Fish Fingers / Chicken Fingers / Burger / Hot Dog', price: '$13' },
+        { name: 'Pasta / Fish Fingers / Chicken Fingers / Burger', price: '$13' },
       ]},
     ],
     reviews: [
@@ -356,6 +492,10 @@ const DETAILS = {
       { text: '"Blackened seared tuna with jasmine rice and asparagus spears cooked to perfection." Server brought a free surprise dessert.', author: 'TripAdvisor Reviewer', date: '2025', rating: 5 },
       { text: '"The Conch Chowder was revelatory." Called the conch fritters "my personal favorite on the island — well spiced with generous portions."', author: 'TripAdvisor Reviewer', date: '2024', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Angel Hair Pasta, Chicken Penne, Filet Mignon',
+      source: { type: 'menu', url: 'https://www.hemingwaystci.com/dinner', note: null },
+    },
   },
 
   provence: {
@@ -392,6 +532,10 @@ const DETAILS = {
       { text: '"Dinner is always excellent. Love the variety. Location and ambience is perfect."', author: 'Robin, NYC', date: 'February 2026', rating: 5 },
       { text: '"K thought her branzino was the best she ever had." Dry friendly service with excellent food.', author: 'Charles, Charlotte', date: 'February 2026', rating: 4 },
     ],
+    oliviaOptions: {
+      items: '',
+      source: { type: 'menu', url: 'https://www.provencebyeric.com/menu', note: null },
+    },
   },
 
   shay: {
@@ -438,6 +582,10 @@ const DETAILS = {
       { text: '"Shay Cafe was a 5 minute walk from our resort and we went there every morning. Good coffee, lattes, bagels and breakfast dishes, with very efficient service."', author: 'TripAdvisor Reviewer', date: '2024', rating: 5 },
       { text: '"The restaurants on this island can get a bit pricey, but not Shay\'s." Praised the "probably the most prompt service on the island."', author: 'TripAdvisor Reviewer', date: '2024', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Omelets, Crepes, Croissants, Muffins, Small Pizzas',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/shay-cafe', note: null },
+    },
   },
 
   caicoscafe: {
@@ -488,6 +636,10 @@ const DETAILS = {
       { text: '"The gnocchi was the best we\'ve ever had and this includes our trips to Italy."', author: 'Adia Harper', date: 'December 2025', rating: 5 },
       { text: '"Food was spectacularly presented and tasted divine. The wine selection was amazing!"', author: 'Candace Lambert', date: 'November 2024', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Organic Spaghettoni “Gentile”, Homemade Ravioli, Homemade potatoes gnocchi, 12oz NY Steak',
+      source: { type: 'menu', url: 'https://caicoscaferestaurant.com/current-menu', note: null },
+    },
   },
 
   cocobistro: {
@@ -542,6 +694,10 @@ const DETAILS = {
       { text: '"Everything about this restaurant is perfect — the food was delicious, the service was impeccable, and the ambiance is unmatched."', author: 'Yelp Reviewer', date: '2025', rating: 5 },
       { text: '"Wonderful outdoor setting with great meals and attentive wait staff. We had the mahi-mahi in coconut curry sauce and beef tenderloin. Both were great!"', author: 'Repeat Visitor', date: '2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Beef and Veal Rigatoni Bolognese, Truffle Spaghetti alla Chitarra, Shoestring Fries',
+      source: { type: 'menu', url: 'https://www.cocobistro.tc/menu', note: null },
+    },
   },
 
   coyaba: {
@@ -594,11 +750,16 @@ const DETAILS = {
       { text: '"Great food and hospitality. We will definitely be back when visiting."', author: 'Ana, Toronto', date: 'February 2026', rating: 5 },
       { text: 'Note: Some reviewers flag automatic water charges ($24 for two bottles) and mandatory gratuity. Budget accordingly.', author: 'Layna, NYC', date: 'February 2026', rating: 4 },
     ],
+    oliviaOptions: {
+      items: 'Penne Pasta, Ravioli, Truffle Fries',
+      source: { type: 'menu', url: 'https://coyabarestaurant.com/our-menu/', note: null },
+    },
   },
 
   // --- New restaurants ---
 
   omars: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as local seafood with Jamaican influences, with seafood and non-seafood choices for the family.',
     synopsis: "Omar's Beach Hut is a beloved beachside spot on the quiet end of Grace Bay where you order at the window and eat with your toes in the sand. The vibe is pure Caribbean — reggae music, picnic tables under palm trees, and some of the freshest seafood on the island. It's become a cult favorite for its jerk chicken, cracked conch, and signature rum punch. The sunset views are incredible.",
     familyNote: "Extremely kid-friendly — barefoot beach dining, casual ordering, and lots of space for the girls to wander the beach while you eat. Elise and Olivia will love the laid-back vibe. Great for a relaxed dinner without worrying about restaurant etiquette.",
     hours: 'Wed–Mon 11:00 AM – 9:00 PM (closed Tuesdays)',
@@ -641,9 +802,13 @@ const DETAILS = {
       { text: '"Went three times in one week. The cracked conch and rum punch combo is unbeatable. Kids ran on the beach while we relaxed."', author: 'Dave, Atlanta', date: 'March 2025', rating: 5 },
       { text: '"Casual, delicious, and the sunset from here is spectacular. Don\'t skip the conch fritters."', author: 'Jenny, Boston', date: 'February 2026', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Burgers, Fries',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/omars-beach-hut', note: null },
+    },
   },
 
-  mangrovebay: {
+	  mangrovebay: {
     synopsis: "Mangrove Bay is an authentic local restaurant perched right on the water in Blue Hills, offering some of the most genuine TCI cuisine on the island. It's a no-frills, real-deal island experience — think cracked conch, grilled lobster, and peas & rice served on paper plates with a million-dollar view. This is where locals eat, and that says everything.",
     familyNote: "Very casual and welcoming — kids are totally fine here. It's a real cultural experience compared to the resort restaurants. The girls will see how locals eat on the island. Food is simple and delicious. Great paired with a Da Conch Shack visit since they're in the same Blue Hills area.",
     hours: 'Daily 11:00 AM – 9:00 PM',
@@ -680,6 +845,183 @@ const DETAILS = {
       { text: '"Cracked conch was the best we had all trip. Nothing fancy — just perfect island food with a gorgeous view."', author: 'Rachel, Toronto', date: 'December 2025', rating: 5 },
       { text: '"Locals recommended this spot and they were right. The grilled snapper was incredible."', author: 'Tom, Philadelphia', date: 'February 2026', rating: 4 },
     ],
+	    oliviaOptions: {
+	      items: 'Burgers, Fried chicken strips, Mac n’ cheese',
+	      source: { type: 'website', url: 'https://www.visittci.com/providenciales/mangrove-bay-restaurant', note: null },
+	    },
+	  },
+
+  mangoreef: {
+    hostNote: 'Recommended by the VRBO host in May 2026 for Caribbean seafood with Mediterranean influences and enough non-seafood options for Olivia.',
+    synopsis: 'Waterfront (harbor, not beach) dining at Turtle Cove Marina with a big, reliable menu. Known for seasonal local lobster preparations and classic island staples. Sunset timing is great here, and the marina setting gives kids plenty to look at.',
+    familyNote: 'Harbor setting, not beachfront, but good sunsets. Huge menu means everyone finds something. Casual enough for kids, nice enough for a real dinner out.',
+    hours: 'Daily 11:00 AM – 9:00 PM',
+    phone: '+1 649-946-8200',
+    email: '',
+    website: 'https://mangoreef.com/',
+    menuLink: 'http://mangoreef.com/menuke/maincourse2025.pdf',
+    reservations: 'Recommended for dinner (especially at sunset).',
+    address: 'Turtle Cove Marina, Providenciales',
+    instagram: '',
+    tripadvisor: '',
+    perPerson: '$35–55',
+    menu: [
+      { section: 'Menu', note: 'See the full menu online via the Menu button above.' },
+    ],
+    oliviaOptions: { items: '', source: { type: 'menu', url: 'http://mangoreef.com/menuke/maincourse2025.pdf', note: null } },
+  },
+
+  magnolia: {
+    hostNote: 'Recommended by the VRBO host in May 2026 for beautiful sunsets. Current official site lists Turtle Cove Marina, dinner Tuesday-Sunday, and a modern coastal cuisine focus.',
+    synopsis: 'Marina-view dinner and lounge at Turtle Cove, built around golden-hour cocktails, sunset views, modern coastal cooking, and a later lounge feel. The host called out Magnolia for the most beautiful sunsets on island, making it a strong farewell or adults-feel-special dinner pick.',
+    familyNote: 'Best for a sunset dinner where the setting matters. Seafood is prominent, but the broader coastal menu and lounge/tapas format should give the family a few paths. Book early enough to catch golden hour.',
+    hours: 'Tue-Sun 4:00 PM - 2:00 AM; dinner 4:00 PM - 10:00 PM; closed Monday',
+    phone: '',
+    email: 'Reservations@magnoliaprovo.com',
+    website: 'https://magnoliaprovo.com/',
+    menuLink: 'https://magnoliaprovo.com/',
+    reservations: 'Recommended; reserve through the official site.',
+    address: 'Turtle Cove Marina, Providenciales',
+    instagram: 'https://www.instagram.com/magnoliarestaurant',
+    tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147399-d1046336-Reviews-Magnolia_Restaurant_and_Lounge-Providenciales_Turks_and_Caicos.html',
+    perPerson: '$60-100',
+    menu: [
+      { section: 'Style', note: 'Modern coastal cuisine with seafood, fire-driven cooking, craft cocktails, tapas, and marina-view dinner service.' },
+      { section: 'Good For', items: [
+        { name: 'Sunset cocktails and dinner', price: '' },
+        { name: 'Seafood-forward coastal plates', price: '' },
+        { name: 'Tapas from 4:00-6:00 PM', price: '' },
+        { name: 'Late lounge energy after dinner', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'The planner source of truth here is the host recommendation plus the current Magnolia site. Best use: reserve for sunset rather than treating it as a quick casual dinner.', author: 'Planner note', date: 'May 2026', rating: 5 },
+    ],
+    oliviaOptions: {
+      items: 'Tapas / lounge menu may be easiest; verify current pasta, chicken, or simple side options when reserving.',
+      source: { type: 'website', url: 'https://magnoliaprovo.com/', note: null },
+    },
+  },
+
+  fishfry: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as "The Local Fish" held every Thursday night in Grace Bay next to Mr. Grouper\'s, no reservations needed, festivities beginning at 5:30 PM.',
+    synopsis: 'Weekly Thursday evening local food event at PTV Stubbs Diamond Plaza near Grace Bay and Mr. Grouper\'s. It brings together local food and drink vendors, souvenir stalls, live music, cultural performances, and Junkanoo. This matches the host\'s "Local Fish" recommendation by day, location, timing, and no-reservation setup.',
+    familyNote: 'Very family-friendly early in the evening and a great cultural night. Go near the 5:30 PM start for easier parking, shorter lines, and a calmer scene before it gets crowded.',
+    hours: 'Thursdays 5:30 PM - 9:30 PM',
+    phone: '',
+    email: '',
+    website: 'https://turksandcaicostourism.com/turks-caicos-fish-fry/',
+    menuLink: 'https://turksandcaicostourism.com/turks-caicos-fish-fry/',
+    reservations: 'No reservations needed.',
+    address: 'PTV Stubbs Diamond Plaza, The Bight, Providenciales',
+    instagram: '',
+    tripadvisor: '',
+    perPerson: '$25-45',
+    menu: [
+      { section: 'What To Expect', items: [
+        { name: 'Local seafood, chicken, ribs, sides, and island drinks from multiple vendors', price: '' },
+        { name: 'Souvenir and local craft stalls', price: '' },
+        { name: 'Live band and cultural performances', price: '' },
+        { name: 'Junkanoo procession later in the evening', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'Official tourism page confirms the Thursday 5:30-9:30 PM schedule, PTV Stubbs Diamond Plaza location, local vendors, live band, cultural performances, and Junkanoo.', author: 'Experience Turks and Caicos', date: 'Current 2026 planning', rating: 5 },
+    ],
+    oliviaOptions: {
+      items: 'Vendor choice: chicken, ribs, fries, simple sides, drinks, and dessert/snack stands are likely.',
+      source: { type: 'website', url: 'https://turksandcaicostourism.com/turks-caicos-fish-fry/', note: null },
+    },
+  },
+
+  opus: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as a more fine-dining wine bar with a garden-themed setting.',
+    synopsis: 'Grace Bay wine bar and grill near Ocean Club, known for steaks, meat cuts, seafood, a wide wine and cocktail list, indoor air-conditioned dining, and outdoor courtyard seating. It is a good fit for a nicer dinner where Carrie has seafood choices and Olivia still has steak, pasta, pizza-adjacent, or simple grill options to investigate.',
+    familyNote: 'More grown-up than casual beach spots, but still workable for the family if everyone wants a polished dinner. The steak, lamb, surf-and-turf, and dessert options make it less seafood-only than the name might suggest.',
+    hours: '5:00 PM - 10:00 PM; closed Mondays',
+    phone: '+1 (649) 946-5885',
+    email: 'culinariatci@gmail.com',
+    website: 'https://www.opustc.com/',
+    menuLink: 'https://www.opustc.com/',
+    reservations: 'Recommended.',
+    address: 'Ocean Club, Grace Bay Road, Grace Bay',
+    instagram: '',
+    tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147399-d1017014-Reviews-Opus_Wine_Bar_and_Grill-Providenciales_Turks_and_Caicos.html',
+    perPerson: '$55-95',
+    menu: [
+      { section: 'Highlights', items: [
+        { name: 'Seared rare ahi tuna', price: '' },
+        { name: 'Surf and turf', price: '' },
+        { name: 'New Zealand rack of lamb', price: '' },
+        { name: 'Grilled mahi-mahi', price: '' },
+        { name: 'Black Angus tenderloin steak', price: '' },
+      ]},
+      { section: 'Dessert & Drinks', note: 'Fresh desserts plus an extensive wine and cocktail menu.' },
+    ],
+    reviews: [
+      { text: 'Visit Turks and Caicos describes Opus as a gourmet Grace Bay restaurant known for steaks, meat cuts, seafood, indoor dining, and outdoor courtyard dining.', author: 'Visit Turks and Caicos', date: 'Reviewed March 2026', rating: 5 },
+    ],
+    oliviaOptions: {
+      items: 'Steak, lamb, dessert, and simple grill options; verify current pasta/pizza choices when booking.',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/opus', note: null },
+    },
+  },
+
+  terrace: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as a Grace Bay dinner option with seafood and non-seafood choices.',
+    synopsis: 'Come-as-you-are Grace Bay bar and grill for lunch through dinner, with indoor/outdoor seating, sports on big screens, local beer on tap, burgers, wings, sandwiches, flatbreads, seafood, pasta, and flank steak. It is a relaxed alternative to the fine-dining Grace Bay spots.',
+    familyNote: 'Very practical for the family: casual, broad menu, easy parking, and enough non-seafood comfort food for Olivia. Good to pair with shopping around Regent Village, Salt Mills, Ports of Call, and nearby Grace Bay plazas.',
+    hours: 'Restaurant daily 11:00 AM - 10:00 PM; bar daily 11:00 AM - 11:00 PM',
+    phone: '+1 (649) 941-7447',
+    email: '',
+    website: 'https://www.theterraceongracebay.com/',
+    menuLink: 'https://www.theterraceongracebay.com/',
+    reservations: 'Optional; OpenTable available.',
+    address: 'Grace Bay Road, Providenciales',
+    instagram: 'https://www.instagram.com/theterraceongracebay/',
+    tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147399-d2370473-Reviews-The_Terrace_on_Grace_Bay-Providenciales_Turks_and_Caicos.html',
+    opentable: 'https://www.opentable.com/',
+    perPerson: '$30-55',
+    menu: [
+      { section: 'What Works Here', items: [
+        { name: 'Chicken wings', price: '' },
+        { name: 'Fresh-grilled burgers', price: '' },
+        { name: 'Flank steak', price: '' },
+        { name: 'Fish and chips', price: '' },
+        { name: 'Shrimp or lobster pasta', price: '' },
+        { name: 'Flatbread pizzas', price: '' },
+      ]},
+      { section: 'Drinks', note: 'Local Turk\'s Head beers on tap, imported beers, wine, mixed drinks, and liquor.' },
+    ],
+    reviews: [
+      { text: 'Official site describes The Terrace as a casual Grace Bay beach bar for lunch and dinner, with burgers, flank steak, wings, snacks, sandwiches, and a tropical twist.', author: 'The Terrace on Grace Bay', date: 'Current 2026 planning', rating: 5 },
+    ],
+    oliviaOptions: {
+      items: 'Burgers, wings, flatbread pizzas, fish and chips, sandwiches, fries, desserts.',
+      source: { type: 'website', url: 'https://www.theterraceongracebay.com/', note: null },
+    },
+  },
+
+  somewhere: {
+    synopsis: 'Tex-Mex and Caribbean beach cafe directly on the sand in front of Bight Reef — one of the most family-friendly snorkel spots on the island. Strategic pairing: snorkel in the morning, then walk up in swimsuits for an easy meal. The second-floor deck has great water views; service can be mixed, but the location and vibes are the draw.',
+    familyNote: "Beachfront-casual, swimsuits welcome. Bight Reef directly in front makes this a natural pairing with a snorkel morning. Kids' menu available.",
+    hours: 'Daily 8:30 AM – 10:00 PM',
+    phone: '+1 649-941-8260',
+    email: '',
+    website: 'https://somewherecafeandlounge.com/',
+    menuLink: 'https://somewherecafeandlounge.com/menu/',
+    reservations: 'Walk-ins welcome.',
+    address: "5 Penn's Rd, The Bight Settlement",
+    instagram: '',
+    tripadvisor: '',
+    perPerson: '$25–40',
+    menu: [
+      { section: 'Menu', note: 'See the full menu online via the Menu button above.' },
+    ],
+    oliviaOptions: {
+      items: 'Hamburger, Cheeseburger, Dirty Fries, French Fries',
+      source: { type: 'menu', url: 'https://somewherecafeandlounge.com/menu/', note: null },
+    },
   },
 
   baci: {
@@ -725,9 +1067,13 @@ const DETAILS = {
       { text: '"Our family ate here twice. Kids loved the pizza, we loved the pasta and wine. Service was attentive and warm."', author: 'Michael, Connecticut', date: 'February 2026', rating: 5 },
       { text: '"Handmade pasta is the real deal. Osso buco melted off the bone. Great wine selection too."', author: 'David, London', date: 'December 2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Penne alla Vodka con Pollo, Spaghetti con Polpette, Mezzi Rigatoni Florio, Pizza',
+      source: { type: 'menu', url: 'https://static.showit.co/file/Ix2btg1ATWKsDeF79X1dww/51628/baci_dinner_2022.pdf', note: null },
+    },
   },
 
-  mrgroupers: {
+	  mrgroupers: {
     synopsis: "Mr. Grouper's is one of Providenciales' most iconic restaurants — a local institution that's been serving massive portions of fresh seafood and island comfort food for years. The colorful building near Leeward Highway is always packed with a mix of tourists and locals, which tells you everything. Known for generous plates of grilled fish, cracked conch, and their famous peas & rice. It's real island cooking at its best.",
     familyNote: "Huge portions and very affordable — great value for a family of four. The girls will love the mac & cheese and chicken tenders. Carrie and Mike should try the grilled grouper (obviously!). Very casual atmosphere, no dress code worries. Can get busy — try to arrive before 7 PM.",
     hours: 'Mon–Sat 11:30 AM – 9:30 PM (closed Sundays)',
@@ -769,7 +1115,11 @@ const DETAILS = {
       { text: '"Went for the cracked conch based on every review — totally lived up to the hype. Kids cleaned their plates too."', author: 'Chris, Virginia', date: 'January 2026', rating: 5 },
       { text: '"Don\'t let the simple exterior fool you. This is some of the best seafood we\'ve ever had, and the prices are incredibly reasonable for TCI."', author: 'Amy, Nashville', date: 'March 2025', rating: 5 },
     ],
-  },
+	    oliviaOptions: {
+	      items: 'Burgers, Baked mac and cheese',
+	      source: { type: 'website', url: 'https://www.visittci.com/providenciales/mr-groupers', note: null },
+	    },
+	  },
 
   bluewater: {
     synopsis: "Blue Water Bistro sits in the Ocean Club West resort on Grace Bay, offering an elegant yet approachable dining experience right at the beach. The menu combines Caribbean seafood with contemporary international techniques — think sushi-grade tuna, pan-seared mahi mahi, and lobster risotto. The open-air dining room faces the ocean, making sunset dinner here a genuinely special experience.",
@@ -777,7 +1127,7 @@ const DETAILS = {
     hours: 'Daily 6:00 PM – 10:00 PM',
     phone: '+1 649-946-5094',
     website: 'https://www.wymara.com/blue-water-bistro',
-    menuLink: 'https://www.wymara.com/blue-water-bistro',
+    menuLink: 'https://irp.cdn-website.com/1ce73612/files/uploaded/Blue%20Water%20Bistro%20Lunch%20Menu.pdf',
     reservations: 'Recommended — book 2-3 days ahead',
     address: 'Ocean Club West, Grace Bay, Providenciales',
     tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147400-d1063803-Reviews-Blue_Water_Bistro-Providenciales_Turks_and_Caicos.html',
@@ -808,6 +1158,10 @@ const DETAILS = {
       { text: '"Our best dinner of the trip. The sunset, the food, the wine — everything was perfect. Tuna tartare was outstanding."', author: 'Rob, Boston', date: 'February 2026', rating: 5 },
       { text: '"Elegant without being pretentious. Kids were welcome and well-accommodated. Will absolutely return."', author: 'Karen, Charlotte', date: 'December 2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Wymara’s Ultimate Angus Beef Burger, Pepperoni Pizza, Chicken tenders and fries, Mac and cheese',
+      source: { type: 'menu', url: 'https://irp.cdn-website.com/1ce73612/files/uploaded/Blue%20Water%20Bistro%20Lunch%20Menu.pdf', note: null },
+    },
   },
 
   cocovan: {
@@ -846,6 +1200,10 @@ const DETAILS = {
       { text: '"Took the kids here and they went crazy for the truffle fries and sliders. Adults loved the Korean tacos. So creative and delicious."', author: 'James, Denver', date: 'February 2026', rating: 5 },
       { text: '"A must-visit in Provo. The food is inventive, portions are generous, and the vibe is just perfect for a vacation night out."', author: 'Megan, Austin', date: 'December 2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Cocovan Burger, Fried Mac & Cheese Balls, Curry Fries, Kids Chicken Quesadilla & Fries, Kids Single Patty Burger & Fries',
+      source: { type: 'menu', url: 'https://www.cocovan.tc/menu', note: null },
+    },
   },
 
   baybistro: {
@@ -889,6 +1247,10 @@ const DETAILS = {
       { text: '"Dinner with toes in the sand watching the sunset — does it get better? Food was excellent, grilled mahi was perfectly cooked."', author: 'Patrick, Dallas', date: 'January 2026', rating: 5 },
       { text: '"We came for breakfast 3 mornings in a row. Beautiful setting, great coffee, and the eggs benedict is top-notch."', author: 'Laura, DC', date: 'March 2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Grilled Beef Filet, Cowboy Steak, Butternut Squash Ravioli, Fettuccine Romesco Sauce',
+      source: { type: 'menu', url: 'https://bay-bistro.com/wp-content/uploads/2025/12/Dinner-Menu-Entrees.pdf', note: null },
+    },
   },
 
   caicosbakery: {
@@ -935,15 +1297,20 @@ const DETAILS = {
       { text: '"Get there early — the almond croissants sell out fast! Everything is freshly baked and absolutely delicious."', author: 'Tim, Boston', date: 'January 2026', rating: 5 },
       { text: '"Perfect breakfast spot. The quiche and coffee are outstanding. We also grabbed baguettes for beach picnics."', author: 'Sophie, London', date: 'December 2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Pain au Chocolat, Almond Croissant, Ham & Cheese Croissant, Quiche, Apple Tart',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/caicos-bakery', note: null },
+    },
   },
 
   infiniti: {
+    hostNote: 'Recommended by the VRBO host in May 2026 as a more fine-dining option at Grace Bay Club.',
     synopsis: "Infiniti Restaurant & Raw Bar is one of Grace Bay's top fine dining destinations, located at the Grace Bay Club. The menu showcases creative sushi, sashimi, and raw bar offerings alongside beautifully plated Caribbean-Asian fusion mains. The elegant oceanfront setting, impeccable service, and inventive cocktails make this one of the most memorable dining experiences on the island. Their sushi is considered the best in TCI.",
     familyNote: "This is your splurge dinner — reserve it for a special night. The sushi and raw bar are outstanding if your family enjoys Japanese food. Elise might love the sushi if she's adventurous; Olivia can go for the chicken or pasta options. It's the most upscale on this list, so consider it for a 'fancy dinner out' night. The sunset views from the terrace are breathtaking.",
     hours: 'Daily 6:00 PM – 10:00 PM',
     phone: '+1 649-946-5050',
     website: 'https://gracebayclub.gracebayresorts.com/restaurant/infiniti-restaurant-raw-bar/',
-    menuLink: 'https://gracebayclub.gracebayresorts.com/infiniti-restaurant-raw-bar-menu/',
+    menuLink: 'https://gracebayclub.gracebayresorts.com/infiniti-restaurant-menu/',
     reservations: 'Essential — book well in advance, especially peak season',
     address: 'Grace Bay Club, Grace Bay Beach, Providenciales',
     tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147400-d1063804-Reviews-Infiniti_Restaurant_Raw_Bar-Providenciales_Turks_and_Caicos.html',
@@ -975,16 +1342,21 @@ const DETAILS = {
       { text: '"Miso sea bass literally melts in your mouth. The setting is stunning — dinner at sunset on the terrace was unforgettable."', author: 'Rebecca, NYC', date: 'February 2026', rating: 5 },
       { text: '"Expensive but worth every penny for a special occasion. Service was flawless and the cocktails were incredibly creative."', author: 'Andrew, London', date: 'December 2025', rating: 5 },
     ],
+    oliviaOptions: {
+      items: 'Mini Pizza, Chicken Tenders & French Fries, Spaghetti, Grilled Sandwich (Ham & Cheese), Truffle Fries',
+      source: { type: 'menu', url: 'https://gracebayclub.gracebayresorts.com/infiniti-restaurant-menu/', note: null },
+    },
   },
 
   parallel23: {
-    synopsis: "Parallel 23 is the signature restaurant at The Ritz-Carlton, TCI, offering sophisticated Caribbean fusion cuisine in a stunning oceanfront setting. Named for the latitude line that runs through Providenciales, the menu draws on global influences while highlighting local ingredients — think lobster with Caribbean spices, aged steaks, and creative tropical cocktails. The open-air design with soaring ceilings and ocean breezes creates an unforgettable ambiance.",
-    familyNote: "The Ritz setting makes this feel ultra-special — great for a big night out. The menu has enough variety for everyone, including simpler options for the girls. It's expensive (Ritz prices) but the experience matches. Consider this as an alternative to Coco Bistro or Infiniti for your 'fancy dinner' slot. The resort grounds are beautiful for a walk before/after dinner.",
+    synopsis: 'Parallel 23 is an upscale Caribbean-international restaurant with a steak-and-pasta-friendly section of the menu. Great option for a nicer dinner out where everyone can find something.',
+    familyNote: 'Nice dinner spot that still works for kids. Pasta options help for picky eaters, and the menu has steak-forward choices for the adults.',
     hours: 'Tue–Sat 6:00 PM – 10:00 PM (closed Sun & Mon)',
     phone: '+1 649-339-3939',
-    website: 'https://www.ritzcarlton.com/en/hotels/plsrt-the-ritz-carlton-turks-and-caicos/dining/',
+    website: 'https://thepalmstc.com/',
+    menuLink: 'https://thepalmstc.com/wp-content/uploads/2026/01/Parallel-23-menus-January-30.pdf',
     reservations: 'Essential — book through hotel or OpenTable',
-    address: 'The Ritz-Carlton, Grace Bay, Providenciales',
+    address: 'Grace Bay, Providenciales',
     tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147400-d23557563-Reviews-Parallel_23-Providenciales_Turks_and_Caicos.html',
     perPerson: '$65–110',
     menu: [
@@ -1013,6 +1385,10 @@ const DETAILS = {
       { text: '"The dry-aged ribeye was the best steak I\'ve had in years. Service was Ritz-level impeccable. A truly special evening."', author: 'Mark, Chicago', date: 'January 2026', rating: 5 },
       { text: '"Beautiful setting and excellent food, but definitely Ritz pricing. The short rib and coconut tres leches were highlights."', author: 'Stephanie, Atlanta', date: 'December 2025', rating: 4 },
     ],
+    oliviaOptions: {
+      items: 'Potato Gnocchi, Butternut Squash Ravioli, Lobster Fettuccine, Beef Tenderloin',
+      source: { type: 'menu', url: 'https://thepalmstc.com/wp-content/uploads/2026/01/Parallel-23-menus-January-30.pdf', note: null },
+    },
   },
 
   bellaluna: {
@@ -1021,6 +1397,7 @@ const DETAILS = {
     hours: 'Mon–Tue, Thu–Sat 5:00–10:00 PM | Wed 5:00–10:30 PM | Sun Closed',
     phone: '+1 (649) 946-5214',
     website: 'https://www.bellaluna.tc',
+    menuLink: 'https://www.bellaluna.tc/menus',
     reservations: 'Recommended, especially for the ristorante side.',
     address: 'Grace Bay Road, Grace Bay',
     tripadvisor: 'https://www.tripadvisor.com/Restaurant_Review-g147399-d1045877-Reviews-Bella_Luna_Ristorante_Pizzeria-Providenciales_Turks_and_Caicos.html',
@@ -1054,6 +1431,10 @@ const DETAILS = {
       { text: '"Great pizza! Family friendly. The garden setting of the pizzeria is beautiful and the kids loved watching the pizza chef stretch the dough."', author: 'Sarah, Virginia', date: 'February 2026', rating: 5 },
       { text: '"Two restaurants in one — the upstairs ristorante for a date night and the garden pizzeria for a casual family meal. Lobster Fra Diavolo was incredible."', author: 'David, Toronto', date: 'December 2025', rating: 4 },
     ],
+    oliviaOptions: {
+      items: 'Spaghetti & Meatballs, Spaghetti Bolognese, Lasagna Tipica, Ravioli al Formaggio',
+      source: { type: 'menu', url: 'https://www.bellaluna.tc/menus', note: null },
+    },
   },
 
   pizzapizza: {
@@ -1094,6 +1475,10 @@ const DETAILS = {
       { text: '"Been coming here for years. Best value pizza on the island. The terrace seating is lovely and the brick oven makes all the difference."', author: 'Returning Visitor, UK', date: 'March 2025', rating: 4 },
       { text: '"Solid pizza, nothing fancy but exactly what we needed after a long beach day. Pasta Al Forno was a hit with the kids."', author: 'Family of 5, Ohio', date: 'November 2025', rating: 4 },
     ],
+    oliviaOptions: {
+      items: 'Pizza',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/restaurants-and-dining/pizza', note: null },
+    },
   },
 };
 
@@ -1252,7 +1637,7 @@ const RENTAL_DETAILS = {
 // --- Itinerary ---
 const ITINERARY = [
   { day: 1, date: 'Mon, Jun 15', title: 'Travel Day \u2014 Arrive in Paradise', type: 'travel-day',
-    suggestion: 'Flights: RIC \u2192 IAD \u2192 PLS. Arrive 4:05 PM. Pick up rental car at airport. Check into Blue Chill Villa (3 PM+). Settle in, explore the villa & pool. Easy first dinner \u2014 Las Brisas is steps away!' },
+    suggestion: 'Drive to IAD, then United UA1817 IAD \u2192 PLS departs 12:39 PM and arrives 4:05 PM. Pick up rental car at PLS. Check into Blue Chill Villa (3 PM+). Settle in, explore the villa & pool. Easy first dinner \u2014 Las Brisas is steps away!' },
   { day: 2, date: 'Tue, Jun 16', title: 'First Full Day \u2014 Sleep In & Beach',
     suggestion: 'No alarm! Sleep in and enjoy a lazy morning. Stroll to Sapodilla Bay Beach (3 min walk). Afternoon pool time \u2014 try the villa\'s kayaks or paddleboards on Chalk Sound.' },
   { day: 3, date: 'Wed, Jun 17', title: 'Sleep In & Parasailing',
@@ -1270,22 +1655,24 @@ const ITINERARY = [
   { day: 8, date: 'Mon, Jun 22', title: 'Last Full Day \u2014 Soak It All In',
     suggestion: 'Sleep in one more time. Return to your favorite beach. Last swim in the villa pool. Sunset walk on Sapodilla Bay. Special farewell dinner \u2014 Coco Bistro or Coyaba?' },
   { day: 9, date: 'Tue, Jun 23', title: 'Departure Day', type: 'departure-day',
-    suggestion: 'Check out by 11 AM. Morning at the beach or pool. Return rental car at airport. Flight: PLS \u2192 IAD \u2192 RIC departs 5:15 PM, home by 11:21 PM.' },
+    suggestion: 'Check out by 11 AM. Morning at the beach or pool. Return rental car at PLS. United UA1820 PLS \u2192 IAD departs 5:15 PM and arrives 8:31 PM, then drive home from Dulles.' },
 ];
 
 const BREAKFAST_OPTIONS = [
   'Undecided', 'Shay Cafe & Lounge', "Hemingway's on the Beach",
-  'Lua Beach House', 'Bay Bistro', 'Caicos Bakery',
+  'Lua Beach House', 'Bay Bistro', 'Caicos Bakery', 'Lemon2Go',
   'Las Brisas (walking distance!)', 'Cook at villa',
 ];
 
 const DINNER_OPTIONS = [
   'Undecided', 'Las Brisas (walking distance!)', "Bugaloo's Conch Crawl",
   "Omar's Beach Hut", 'Da Conch Shack', 'Mangrove Bay', "Sweet T's",
-  'Baci Ristorante', "Mr. Grouper's", 'Cocovan', 'Blue Water Bistro',
+  'Mango Reef', 'Magnolia Restaurant & Lounge', 'Island Fish Fry (Thursday)',
+  'Baci Ristorante', "Mr. Grouper's", 'Sharkbite Bar & Grill', 'Turks Kebab',
+  'Cabana Bar at Ocean Club East', 'Cocovan', 'Blue Water Bistro',
   'Bay Bistro', "Hemingway's on the Beach", 'Infiniti Restaurant & Raw Bar',
-  'Parallel 23', 'Coco Bistro', 'Coyaba Restaurant', 'Caicos Cafe',
-  'Provence by Eric', 'Lua Beach House',
+  'Opus Wine Bar & Grill', 'The Terrace on Grace Bay', 'Parallel 23',
+  'Coco Bistro', 'Coyaba Restaurant', 'Caicos Cafe', 'Provence by Eric', 'Lua Beach House',
   'Cook at villa - Pasta Night!', 'Cook at villa',
 ];
 
@@ -1325,12 +1712,13 @@ function initCountdown() {
 // FLIGHT MAP
 // ============================================
 function initFlightMap() {
-  const map = L.map('flight-map', { scrollWheelZoom: false, zoomControl: true }).setView([30, -74], 5);
+  const map = L.map('flight-map', { scrollWheelZoom: false, zoomControl: true }).setView([30, -75], 5);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19,
   }).addTo(map);
 
-  Object.entries(AIRPORTS).forEach(([code, info]) => {
+  ['IAD', 'PLS'].forEach(code => {
+    const info = AIRPORTS[code];
     L.circleMarker([info.lat, info.lng], {
       radius: 8, fillColor: code === 'PLS' ? '#f97316' : '#0891b2', color: '#fff', weight: 2, fillOpacity: 0.9,
     }).bindTooltip(`<strong>${code}</strong><br>${info.name}`, {
@@ -1348,7 +1736,6 @@ function initFlightMap() {
     return pts;
   }
 
-  L.polyline(bezier(AIRPORTS.RIC, AIRPORTS.IAD), { color: '#0891b2', weight: 3, dashArray: '8, 6', opacity: 0.8 }).addTo(map);
   const mainPath = bezier(AIRPORTS.IAD, AIRPORTS.PLS);
   L.polyline(mainPath, { color: '#0891b2', weight: 3, opacity: 0.9 }).addTo(map);
 
@@ -1357,7 +1744,7 @@ function initFlightMap() {
     icon: L.divIcon({ html: '<div style="font-size:24px;transform:rotate(150deg)">&#9992;</div>', iconSize: [30,30], iconAnchor: [15,15], className: '' }),
   }).addTo(map);
 
-  map.fitBounds([[AIRPORTS.RIC.lat, AIRPORTS.RIC.lng], [AIRPORTS.IAD.lat, AIRPORTS.IAD.lng], [AIRPORTS.PLS.lat, AIRPORTS.PLS.lng]], { padding: [40, 40] });
+  map.fitBounds([[AIRPORTS.IAD.lat, AIRPORTS.IAD.lng], [AIRPORTS.PLS.lat, AIRPORTS.PLS.lng]], { padding: [40, 40] });
 }
 
 // ============================================
@@ -1394,10 +1781,173 @@ function initGallery() {
 // DINING — Summary Cards + Filters
 // ============================================
 let activeFilter = 'all';
+let diningMap = null;
+let diningMarkerLayer = null;
+
+function restaurantMatchesFilter(r) {
+  if (activeFilter === 'all') return true;
+  if (activeFilter === 'breakfast') return r.type === 'breakfast' || r.type === 'both';
+  if (activeFilter === 'dinner') return r.type === 'dinner' || r.type === 'both';
+  if (activeFilter === 'nearby') return Boolean(r.nearby);
+  if (activeFilter === 'pizza') return Boolean(r.pizza);
+  if (activeFilter === 'fbpick') return Boolean(r.fbPick);
+  return true;
+}
+
+function getDiningPinColor(r) {
+  if (r.nearby) return '#16a34a';
+  if (r.type === 'breakfast') return '#f59e0b';
+  if (r.type === 'both') return '#7c3aed';
+  if (r.pizza) return '#f97316';
+  return '#0891b2';
+}
+
+function getDiningPinLabel(r) {
+  if (r.type === 'both') return 'Both';
+  if (r.type === 'breakfast') return 'Breakfast';
+  return 'Dinner';
+}
+
+function createDiningIcon(r) {
+  const color = getDiningPinColor(r);
+  return L.divIcon({
+    html: `<button class="dining-map-pin" style="--pin-color:${color}" aria-label="${r.name} map pin"></button>`,
+    iconSize: [28, 36],
+    iconAnchor: [14, 34],
+    popupAnchor: [0, -28],
+    className: '',
+  });
+}
+
+function initDiningMap() {
+  const mapEl = document.getElementById('dining-map');
+  if (!mapEl || typeof L === 'undefined') return;
+
+  diningMap = L.map('dining-map', {
+    scrollWheelZoom: false,
+    zoomControl: true,
+    attributionControl: false,
+  }).setView([21.782, -72.218], 12);
+
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    maxZoom: 19,
+  }).addTo(diningMap);
+
+  diningMarkerLayer = L.layerGroup().addTo(diningMap);
+  updateDiningMapMarkers();
+}
+
+function updateDiningMapMarkers() {
+  if (!diningMap || !diningMarkerLayer) return;
+
+  diningMarkerLayer.clearLayers();
+  const bounds = L.latLngBounds([[VILLA.lat, VILLA.lng]]);
+
+  L.marker([VILLA.lat, VILLA.lng], {
+    icon: L.divIcon({
+      html: '<div class="dining-villa-pin">Villa</div>',
+      iconSize: [58, 30],
+      iconAnchor: [29, 15],
+      className: '',
+    }),
+  }).bindPopup(`<strong>${VILLA.name}</strong><br>Home base in Chalk Sound`).addTo(diningMarkerLayer);
+
+  RESTAURANTS.filter(restaurantMatchesFilter).forEach(r => {
+    const d = DETAILS[r.id];
+    const popupHtml = `
+      <div class="dining-map-popup">
+        <strong>${r.name}</strong>
+        <span>${getDiningPinLabel(r)} &middot; ${r.price} &middot; ${r.driveTime}</span>
+        <p>${r.cuisine}</p>
+        <button type="button" data-restaurant="${r.id}">Open details</button>
+      </div>
+    `;
+
+    const marker = L.marker([r.lat, r.lng], { icon: createDiningIcon(r), riseOnHover: true })
+      .bindPopup(popupHtml)
+      .addTo(diningMarkerLayer);
+
+    marker.on('popupopen', (event) => {
+      const button = event.popup.getElement()?.querySelector('button[data-restaurant]');
+      if (button) button.addEventListener('click', () => showRestaurantDetail(r.id));
+    });
+
+    marker.bindTooltip(r.name, {
+      direction: 'top',
+      offset: [0, -26],
+      opacity: 0.92,
+      className: 'dining-map-tooltip',
+    });
+
+    bounds.extend([r.lat, r.lng]);
+  });
+
+  diningMap.fitBounds(bounds, { padding: [30, 30], maxZoom: activeFilter === 'nearby' ? 13 : 12 });
+  setTimeout(() => diningMap.invalidateSize(), 80);
+}
+
+function buildOliviaSourceLabel(source) {
+  if (!source || source.type === 'none') return '';
+  if (source.type === 'menu') return 'menu';
+  if (source.type === 'website') return 'site';
+  if (source.type === 'reviews') return 'reviews';
+  return 'source';
+}
+
+	function buildOliviaSourceHtml(source, variant) {
+	  if (!source || source.type === 'none') return '';
+	
+	  if (source.type === 'reviews') {
+	    if (variant === 'detail') return '<span class="olivia-source-text">Confirmed via recent traveler reviews</span>';
+	    if (source.url) return `<a class="olivia-source-link" href="${source.url}" target="_blank">[reviews]</a>`;
+	    return '<span class="olivia-source-text">[reviews]</span>';
+	  }
+
+  const label = buildOliviaSourceLabel(source);
+  if (!source.url) return `<span class="olivia-source-text">[${label}]</span>`;
+  return `<a class="olivia-source-link" href="${source.url}" target="_blank">[${label}]</a>`;
+}
+
+function buildOliviaCardLine(oliviaOptions) {
+  const items = (oliviaOptions?.items || '').trim();
+  const sourceHtml = buildOliviaSourceHtml(oliviaOptions?.source, 'card');
+  const itemText = items || 'Nothing obvious on menu';
+  return `
+    <div class="dining-card-olivia" title="${itemText}">
+      <span class="olivia-label">👧 Olivia:</span>
+      <span class="olivia-items">${itemText}</span>
+      ${sourceHtml}
+    </div>
+  `;
+}
+
+function buildOliviaDetailCallout(oliviaOptions) {
+  const items = (oliviaOptions?.items || '').trim();
+  const sourceHtml = buildOliviaSourceHtml(oliviaOptions?.source, 'detail');
+
+  if (!items) {
+    return `
+      <div class="detail-olivia-note">
+        <h3>Olivia Options</h3>
+        <p>Nothing obvious on the menu matches Olivia's preferences. Suggest asking the restaurant directly about off-menu kid options.</p>
+        ${sourceHtml ? `<div class="olivia-source-row">${sourceHtml}</div>` : ''}
+      </div>
+    `;
+  }
+
+  return `
+    <div class="detail-olivia-note">
+      <h3>Olivia Options</h3>
+      <p>${items}</p>
+      ${sourceHtml ? `<div class="olivia-source-row">${sourceHtml}</div>` : ''}
+    </div>
+  `;
+}
 
 function initDining() {
   renderDiningCards();
   initDiningFilters();
+  initDiningMap();
 
   // Detail page back button
   document.getElementById('detail-back').addEventListener('click', hideRestaurantDetail);
@@ -1415,11 +1965,14 @@ function renderDiningCards() {
     card.dataset.type = r.type;
     card.dataset.nearby = r.nearby ? 'true' : 'false';
     card.dataset.pizza = r.pizza ? 'true' : 'false';
+    card.dataset.fbpick = r.fbPick ? 'true' : 'false';
 
     const typeLabels = [];
     if (r.type === 'breakfast' || r.type === 'both') typeLabels.push('<span class="dining-tag breakfast-tag">Breakfast</span>');
     if (r.type === 'dinner' || r.type === 'both') typeLabels.push('<span class="dining-tag dinner-tag">Dinner</span>');
     if (r.nearby) typeLabels.push('<span class="dining-tag nearby-tag">Near Villa</span>');
+    if (r.hostRecommended) typeLabels.push('<span class="dining-tag host-tag">Host Recommended</span>');
+    if (r.fbPick) typeLabels.push('<span class="dining-tag fbpick-tag">Community Pick</span>');
     if (r.pizza) typeLabels.push('<span class="dining-tag pizza-tag">Pizza</span>');
     if (r.id === 'sweetts') typeLabels.push('<span class="dining-tag cash-tag">Cash Only</span>');
 
@@ -1438,6 +1991,7 @@ function renderDiningCards() {
         </div>
       </div>
       <div class="tag-row">${typeLabels.join('')}<span class="price-tag">${r.price}</span></div>
+      ${buildOliviaCardLine(detail?.oliviaOptions)}
       <div class="dining-card-distance">
         <span class="distance-icon">&#128205;</span>
         <span>${r.distance} from villa</span>
@@ -1468,22 +2022,16 @@ function initDiningFilters() {
 
 function filterDiningCards() {
   document.querySelectorAll('.dining-card').forEach(card => {
-    const type = card.dataset.type;
-    const nearby = card.dataset.nearby === 'true';
-    const pizza = card.dataset.pizza === 'true';
-    let show = false;
-
-    if (activeFilter === 'all') show = true;
-    else if (activeFilter === 'breakfast') show = (type === 'breakfast' || type === 'both');
-    else if (activeFilter === 'dinner') show = (type === 'dinner' || type === 'both');
-    else if (activeFilter === 'nearby') show = nearby;
-    else if (activeFilter === 'pizza') show = pizza;
+    const restaurant = RESTAURANTS.find(r => r.id === card.dataset.restaurant);
+    const show = restaurant ? restaurantMatchesFilter(restaurant) : false;
 
     card.style.display = show ? '' : 'none';
   });
 
   const cookCard = document.getElementById('villa-cook-card');
   if (cookCard) cookCard.style.display = (activeFilter === 'breakfast' || activeFilter === 'pizza') ? 'none' : '';
+
+  updateDiningMapMarkers();
 }
 
 // ============================================
@@ -1499,10 +2047,14 @@ function showRestaurantDetail(id) {
   const overlay = document.getElementById('restaurant-detail');
   const body = document.getElementById('detail-body');
 
+  const oliviaDetailHtml = buildOliviaDetailCallout(d.oliviaOptions);
+
   const typeLabels = [];
   if (r.type === 'breakfast' || r.type === 'both') typeLabels.push('<span class="dining-tag breakfast-tag">Breakfast</span>');
   if (r.type === 'dinner' || r.type === 'both') typeLabels.push('<span class="dining-tag dinner-tag">Dinner</span>');
   if (r.nearby) typeLabels.push('<span class="dining-tag nearby-tag">Near Villa</span>');
+  if (r.hostRecommended) typeLabels.push('<span class="dining-tag host-tag">Host Recommended</span>');
+  if (r.fbPick) typeLabels.push('<span class="dining-tag fbpick-tag">Community Pick</span>');
 
   // Build menu HTML
   let menuHtml = '';
@@ -1567,7 +2119,7 @@ function showRestaurantDetail(id) {
 
     <div class="detail-info-bar">
       <div class="info-item"><strong>Hours:</strong> ${d.hours}</div>
-      <div class="info-item"><strong>Phone:</strong> <a href="tel:${d.phone}">${d.phone}</a></div>
+      ${d.phone ? `<div class="info-item"><strong>Phone:</strong> <a href="tel:${d.phone}">${d.phone}</a></div>` : ''}
       <div class="info-item"><strong>Reservations:</strong> ${d.reservations}</div>
       ${d.cashOnly ? '<div class="info-item cash-warning"><strong>CASH ONLY</strong></div>' : ''}
     </div>
@@ -1577,10 +2129,14 @@ function showRestaurantDetail(id) {
       <p>${d.synopsis}</p>
     </div>
 
+    ${d.hostNote ? `<div class="detail-host-note"><h3>Verified Host Note</h3><p>${d.hostNote}</p></div>` : ''}
+
     <div class="detail-family-note">
       <h3>Family Assessment</h3>
       <p>${d.familyNote}</p>
     </div>
+
+    ${oliviaDetailHtml}
 
     <div class="detail-map-section">
       <h3>Getting There</h3>
@@ -1722,21 +2278,27 @@ function renderActivitiesContent() {
   const state = getState();
 
   const activities = [
-    { id: 'parasailing', icon: '\ud83e\ude82', title: 'Parasailing at Grace Bay', who: 'Mike, Elise & Olivia', priority: true,
+    { id: 'parasailing', icon: '\ud83e\ude82', title: 'Parasailing at Grace Bay', who: 'Mike, Elise & Olivia', priority: true, hostRecommended: true,
       desc: 'Soar above the turquoise waters of Grace Bay. Most operators offer tandem and triple flights.',
       providers: [
         { name: 'Captain Marvin\'s', info: 'Popular operator, ~$100/person', website: 'https://www.captainmarvins.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d4439919' },
         { name: 'Parasailing TCI', info: 'Well-reviewed, beachfront pickup', website: '', tripadvisor: '' },
       ]},
-    { id: 'snorkeling', icon: '\ud83e\udd3f', title: 'Snorkeling Cruise', who: 'Everyone', priority: true,
+    { id: 'snorkeling', icon: '\ud83e\udd3f', title: 'Snorkeling Boat Tour', who: 'Everyone', priority: true, hostRecommended: true,
       desc: 'Half-day cruise to the barrier reef and Half Moon Bay. See sea turtles, stingrays, and iguanas on the beach.',
       providers: [
         { name: 'Caicos Dream Tours', info: '9 AM departure, ~4 hours, lunch included', website: 'https://www.caicosdreamtours.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d2073175' },
       ]},
-    { id: 'kayak', icon: '\ud83d\udef6', title: 'Kayak Eco-Tour', who: 'Everyone',
-      desc: 'Paddle through mangroves and visit the iguana sanctuary at Little Water Cay. Half-day tour.',
+    { id: 'kayak', icon: '\ud83d\udef6', title: 'Kayak / Paddle Board Eco-Tour', who: 'Everyone', hostRecommended: true,
+      desc: 'Paddle through mangroves and visit the iguana sanctuary at Little Water Cay. The host specifically recommended kayaking and paddle boarding; the villa/Chalk Sound area also makes this an easy near-home option.',
       providers: [
         { name: 'Big Blue Collective', info: 'Eco-focused tour company, SUP & kayak tours', website: 'https://www.bigbluecollective.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d640498' },
+        { name: 'Las Brisas / Chalk Sound', info: 'Ask locally about kayaks, SUPs, and easy Chalk Sound paddles near the villa.', website: 'https://neptunevillastci.com/index.php/las-brisas-restaurant-bar/', tripadvisor: '' },
+      ]},
+    { id: 'tubing', icon: '\ud83c\udf0a', title: 'Tubing / Banana Boating', who: 'Everyone', hostRecommended: true,
+      desc: 'Fast, playful water activity the host recommended for a lighter adventure day. Best paired with a Grace Bay beach afternoon or another boat outing once everyone has settled in.',
+      providers: [
+        { name: 'Book through host / local concierge', info: 'Host said fun activities, including water sports, can be booked once you arrive and settle in.', website: '', tripadvisor: '' },
       ]},
     { id: 'beaches', icon: '\ud83c\udfd6\ufe0f', title: 'Beach Days', who: 'Everyone',
       desc: 'Grace Bay Beach (world-famous), Sapodilla Bay (3 min walk, calm), Taylor Bay (shallow, great for Olivia), and Long Bay (kite surfing views).',
@@ -1757,21 +2319,38 @@ function renderActivitiesContent() {
       providers: [
         { name: 'Provo Ponies', info: '60\u201390 min rides, ~$125\u2013150/person. Long Bay Beach.', website: 'https://provoponies.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d1024318-Reviews-Provo_Ponies-Providenciales_Turks_and_Caicos.html' },
       ]},
-    { id: 'sunset', icon: '\ud83c\udf05', title: 'Sunset Cruise', who: 'Everyone',
-      desc: 'A 2\u20132.5 hour catamaran cruise along Grace Bay at golden hour. Tropical drinks, snacks, and stunning views of the sunset over the Caicos cays. Some cruises are adults-only \u2014 look for family-friendly options.',
+    { id: 'sunset', icon: '\ud83c\udf05', title: 'Sunset Cruise / Pontoon', who: 'Everyone', hostRecommended: true,
+      desc: 'A 2\u20132.5 hour sunset cruise at golden hour. The host specifically recommended the Las Brisas sunset pontoon boat near the villa, plus the existing Grace Bay catamaran options remain strong.',
       providers: [
+        { name: 'Las Brisas Sunset Pontoon', info: 'Host-recommended Chalk Sound / villa-area sunset pontoon option.', website: 'https://neptunevillastci.com/index.php/las-brisas-restaurant-bar/', tripadvisor: '' },
         { name: 'Caicos Dream Tours', info: '2.5 hr cruise, drinks included. Same company as snorkeling cruise.', website: 'https://caicosdreamtours.com/boat-tours/sunset-cruise-turks-and-caicos-providenciales/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d2073175' },
         { name: 'Island Vibes Tours', info: 'Private sunset cruises from Turtle Cove Marina.', website: 'https://islandvibestours.com/package/premium-sunset/', tripadvisor: '' },
       ]},
-    { id: 'jetski', icon: '\ud83c\udfce\ufe0f', title: 'Jet Ski Shipwreck Tour', who: 'Mike & Elise (passengers 10+, drivers 15+)',
-      desc: 'Ride jet skis out to the La Famille Express shipwreck, secluded cays, and nearby beaches. About 1 hour guided tour through crystal-clear water. Elise can ride as a passenger or possibly co-pilot at 15. ~$175\u2013190 per jet ski plus 12% tax.',
+    { id: 'jetski', icon: '\ud83c\udfce\ufe0f', title: 'Jet Ski Shipwreck / Chalk Sound Area Tour', who: 'Mike & Elise (passengers 10+, drivers 15+)', hostRecommended: true,
+      desc: 'Ride jet skis out to the La Famille Express shipwreck, secluded cays, and nearby beaches. The host also recommended jet ski tours near the villa / Chalk Sound area. About 1 hour guided tour through crystal-clear water. Elise can ride as a passenger or possibly co-pilot at 15. ~$175\u2013190 per jet ski plus 12% tax.',
       providers: [
         { name: 'Five Cays Watersports', info: '~1 hr guided tour, ~$175/jet ski.', website: 'https://fivecayswatersports.com/', tripadvisor: '' },
         { name: 'Sun and Fun Sea Sports', info: 'Shipwreck Adventure tour, ~$190/jet ski.', website: 'https://www.sunandfunseasports.com/tours/shipwreck-adventure/', tripadvisor: '' },
       ]},
-    { id: 'shopping', icon: '\ud83d\udecd\ufe0f', title: 'Grace Bay Shopping & Ice Cream', who: 'Everyone',
-      desc: 'Stroll the shops at Saltmills Plaza, Regent Village, and Ports of Call. Local art, island jewelry, souvenir t-shirts, and handmade crafts. Grab ice cream or smoothies between shops. Great paired with a Potcake walk or beach time.',
+    { id: 'atv', icon: '\ud83c\udfdd\ufe0f', title: 'ATV Riding Tours Near Chalk Sound', who: 'Mike & Elise / adventurous crew', hostRecommended: true,
+      desc: 'Host-recommended activity near the villa / Chalk Sound side of the island. Good candidate for a shorter adventure without turning the day into a full Grace Bay outing.',
+      providers: [
+        { name: 'Book through host / local concierge', info: 'Ask the host for the preferred ATV operator after arrival.', website: '', tripadvisor: '' },
+      ]},
+    { id: 'biketours', icon: '\ud83d\udeb2', title: 'Bike Tours', who: 'Everyone / older kids', hostRecommended: true,
+      desc: 'Host-recommended land activity for seeing more of Provo at a slower pace. Best as a morning option before the heat builds.',
+      providers: [
+        { name: 'Book through host / local concierge', info: 'Ask about family-friendly routes, helmets, pickup location, and heat timing.', website: '', tripadvisor: '' },
+      ]},
+    { id: 'shopping', icon: '\ud83d\udecd\ufe0f', title: 'Grace Bay Shopping & Ice Cream', who: 'Everyone', hostRecommended: true,
+      desc: 'Stroll the host-recommended Grace Bay shopping cluster: Regent Village, Salt Mills Plaza, The Patti Place, The Terrace at Grace Bay area, Duty Free Boutique, Rumors Boutique, Caribbean Outpost, and Coco Boutique. Grab ice cream or smoothies between shops. Great paired with a Potcake walk, beach time, or dinner at The Terrace.',
       providers: [] },
+    { id: 'casino', icon: '\ud83c\udfb2', title: 'Casino Night Options', who: 'Adults / optional', hostRecommended: true,
+      desc: 'The host listed Casa Blanca Casino and The Ritz-Carlton casino as nearby nightlife options. Keep this as an adults-only backup idea after dinner rather than a family activity.',
+      providers: [
+        { name: 'Casa Blanca Casino', info: 'Host-recommended casino option.', website: '', tripadvisor: '' },
+        { name: 'The Ritz-Carlton Casino', info: 'Host-recommended Grace Bay casino option.', website: '', tripadvisor: '' },
+      ]},
   ];
 
   container.innerHTML = '<div class="activities-grid">' + activities.map(a => {
@@ -1790,6 +2369,7 @@ function renderActivitiesContent() {
     return `<div class="activity-card${a.priority ? ' priority' : ''}">
       <div class="activity-icon">${a.icon}</div>
       <h4>${a.title}</h4>
+      ${a.hostRecommended ? '<span class="activity-host-badge">Host Recommended</span>' : ''}
       <p class="activity-who">${a.who}</p>
       <p>${a.desc}</p>
       ${provHtml ? `<div class="activity-providers">${provHtml}</div>` : ''}

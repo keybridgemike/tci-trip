@@ -3,9 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5173 --strictPort",
+    "dev:15176": "vite --port 15176 --strictPort",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "preview:15176": "vite preview --port 15176 --strictPort"
   },
   "devDependencies": {
     "vite": "^6.3.5"
