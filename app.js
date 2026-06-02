@@ -39,10 +39,10 @@ const RESTAURANTS = [
   { id: 'lua', name: 'Lua Beach House', type: 'both', lat: 21.7745, lng: -72.2030, rating: 4.9, reviews: 120, price: '$$$', distance: '7.3 mi', driveTime: '15 min', nearby: false, pizza: true, cuisine: 'Global Fusion' },
   { id: 'somewhere', name: 'Somewhere Cafe and Lounge', type: 'both', lat: 21.7854, lng: -72.2045, rating: 4.2, reviews: 857, price: '$$', distance: '7.5 mi', driveTime: '16 min', nearby: false, fbPick: true, cuisine: 'Tex-Mex / Caribbean Beachfront' },
   { id: 'bluewater', name: 'Blue Water Bistro', type: 'dinner', lat: 21.797, lng: -72.199, rating: 4.9, reviews: 685, price: '$$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 1, cuisine: 'Caribbean Seafood' },
-  { id: 'cocovan', name: 'Cocovan', type: 'dinner', lat: 21.793, lng: -72.185, rating: 4.7, reviews: 1072, price: '$-$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 2, cuisine: 'Gourmet Street Food' },
+  { id: 'cocovan', name: 'Cocovan', type: 'dinner', lat: 21.793, lng: -72.185, rating: 4.7, reviews: 1072, price: '$-$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 2, shortlist: true, cuisine: 'Gourmet Street Food' },
   { id: 'baybistro', name: 'Bay Bistro', type: 'both', lat: 21.799, lng: -72.178, rating: 4.5, reviews: 3200, price: '$$-$$$', distance: '8.5 mi', driveTime: '20 min', nearby: false, cuisine: 'Caribbean Beachfront' },
   { id: 'caicosbakery', name: 'Caicos Bakery', type: 'breakfast', lat: 21.795, lng: -72.175, rating: 4.4, reviews: 1360, price: '$', distance: '8.5 mi', driveTime: '18 min', nearby: false, cuisine: 'French Bakery' },
-  { id: 'hemingways', name: "Hemingway's on the Beach", type: 'both', lat: 21.7951, lng: -72.1875, rating: 4.1, reviews: 3381, price: '$$', distance: '9.1 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 1, cuisine: 'Caribbean Beachfront' },
+  { id: 'hemingways', name: "Hemingway's on the Beach", type: 'both', lat: 21.7951, lng: -72.1875, rating: 4.1, reviews: 3381, price: '$$', distance: '9.1 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 1, shortlist: true, cuisine: 'Caribbean Beachfront' },
   { id: 'cabana', name: 'Cabana Bar at Ocean Club East', type: 'dinner', lat: 21.8000, lng: -72.1674, rating: 4.3, reviews: 620, price: '$$', distance: '9.3 mi', driveTime: '20 min', nearby: false, fbPick: true, cuisine: 'Casual Beach Bar' },
   { id: 'turkskebab', name: 'Turks Kebab', type: 'dinner', lat: 21.7949, lng: -72.1773, rating: 4.5, reviews: 1100, price: '$', distance: '9.5 mi', driveTime: '19 min', nearby: false, fbPick: true, cuisine: 'Quick Casual Mediterranean' },
   { id: 'infiniti', name: 'Infiniti Restaurant & Raw Bar', type: 'dinner', lat: 21.799, lng: -72.173, rating: 4.5, reviews: 2971, price: '$$$', distance: '9.0 mi', driveTime: '20 min', nearby: false, hostRecommended: true, fbPick: true, fbMentions: 3, topPick: true, pickReason: 'Sushi & raw bar with a romantic Grace Bay sunset view.', cuisine: 'Sushi & Fine Dining' },
@@ -62,8 +62,8 @@ const RESTAURANTS = [
   { id: 'indigo', name: 'Indigo', type: 'both', lat: 21.7967, lng: -72.1875, rating: 4.9, reviews: 1800, price: '$$$', distance: '9.0 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 5, topPick: true, pickReason: 'Award-winning farm-to-table at Wymara; beachfront with a great happy hour.', cuisine: 'Caribbean Farm-to-Table' },
   { id: 'landandsea', name: 'Land + Sea', type: 'dinner', lat: 21.7555, lng: -72.2085, rating: null, reviews: null, price: '$$$', distance: '6.5 mi', driveTime: '15 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, pickReason: 'Newest splurge — dry-aged steaks & a seafood tower over Sunset Cove. Closest of the top picks.', cuisine: 'Surf & Turf' },
   { id: 'gracescottage', name: "Grace's Cottage", type: 'dinner', lat: 21.7945, lng: -72.1985, rating: 4.6, reviews: 450, price: '$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, pickReason: 'Romantic French-Caribbean in a candlelit garden at Point Grace.', cuisine: 'French-Caribbean Fine Dining' },
-  { id: 'embers', name: 'Embers', type: 'dinner', lat: 21.7895, lng: -72.1985, rating: 4.7, reviews: 700, price: '$$-$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, pickReason: 'Open-fire grill, big flavors, strong value — no view, all food.', cuisine: 'Open-Fire Grill' },
-  { id: 'pelicanbay', name: 'Pelican Bay Restaurant & Bar', type: 'both', lat: 21.7985, lng: -72.1845, rating: 4.1, reviews: null, price: '$$-$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, pickReason: 'Beachfront at Royal West Indies — daily happy hour, themed nights & great conch.', cuisine: 'Caribbean Beachfront' },
+  { id: 'embers', name: 'Embers', type: 'dinner', lat: 21.7895, lng: -72.1985, rating: 4.7, reviews: 700, price: '$$-$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, booked: 'Wed Jun 17 · 6:30 PM', pickReason: 'Open-fire grill, big flavors, strong value — no view, all food.', cuisine: 'Open-Fire Grill' },
+  { id: 'pelicanbay', name: 'Pelican Bay Restaurant & Bar', type: 'both', lat: 21.7985, lng: -72.1845, rating: 4.1, reviews: null, price: '$$-$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, shortlist: true, pickReason: 'Beachfront at Royal West Indies — daily happy hour, themed nights & great conch.', cuisine: 'Caribbean Beachfront' },
   { id: 'salina', name: 'Salina', type: 'dinner', lat: 21.7970, lng: -72.1900, rating: null, reviews: null, price: '$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 2, cuisine: 'Seafood & Raw Bar' },
   { id: 'almondtree', name: 'Almond Tree', type: 'dinner', lat: 21.7805, lng: -72.1628, rating: 4.7, reviews: 136, price: '$$-$$$', distance: '11.5 mi', driveTime: '24 min', nearby: false, pizza: true, fbPick: true, fbMentions: 2, cuisine: 'Comfort Food & Wood-Fired Pizza' },
   { id: 'suiren', name: 'SUI-REN', type: 'dinner', lat: 21.7808, lng: -72.1620, rating: 4.3, reviews: null, price: '$$$', distance: '11.5 mi', driveTime: '24 min', nearby: false, fbPick: true, fbMentions: 2, cuisine: 'Asian-Peruvian / Sushi' },
@@ -152,10 +152,11 @@ const DETAILS = {
     synopsis: 'Open-fire restaurant and craft-cocktail bar at The Hub in Grace Bay, built around a 10-ft live-fire grill in a moody wood-and-brass room. No ocean view — it is an inland complex — but the fusion menu (miso-glazed salmon, burrata, conch dumplings, bao buns, skirt steak) and the value draw raves. Several in the thread called it great food without the view-premium price.',
     familyNote: 'Food-first spot that is more relaxed than the resort fine-dining rooms. Good for a group that cares about the plate more than the view. Wood-fired pizza and steak-and-fries cover Olivia.',
     hours: 'Dinner nightly (some lunch service) — confirm times',
+    phone: '+1 (649) 431-5161',
     website: 'https://www.embers.tc/',
     menuLink: 'https://www.embers.tc/',
-    reservations: 'Recommended (embers.tc). Smart-casual.',
-    address: 'The Hub, Grace Bay, Providenciales',
+    reservations: '✅ BOOKED — Wed, Jun 17 at 6:30 PM, table for 4 on the Covered Patio (OpenTable conf. #26974).',
+    address: 'The Hub, Allegro Road, Grace Bay, Providenciales',
     perPerson: '$50-90',
     reviews: [
       { text: 'Recommended by 3 travelers in the May 2026 thread: "Embers if you are not looking for a view — great food, good prices."', author: 'Facebook group', date: 'May 2026', rating: 5 },
@@ -1819,7 +1820,7 @@ const ITINERARY = [
   { day: 2, date: 'Tue, Jun 16', title: 'First Full Day \u2014 Sleep In & Beach',
     suggestion: 'No alarm! Sleep in and enjoy a lazy morning. Stroll to Sapodilla Bay Beach (3 min walk). Afternoon pool time \u2014 try the villa\'s kayaks or paddleboards on Chalk Sound.' },
   { day: 3, date: 'Wed, Jun 17', title: 'Sleep In & Parasailing',
-    suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach; browse the shops after. Dinner: Embers \u2014 open-fire grill, big flavors, no view but a great plate (book ahead).' },
+    suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach; browse the shops after. Dinner: \u2705 Embers BOOKED \u2014 6:30 PM, table for 4 on the covered patio (OpenTable conf. #26974 \u00b7 (649) 431-5161). Open-fire grill, big flavors.' },
   { day: 4, date: 'Thu, Jun 18', title: '\u2600\uFE0F Early Morning \u2014 Snorkeling Cruise',
     suggestion: 'Early start (the only truly necessary one). Half-day Caicos Dream Tours snorkeling cruise departs 9 AM (~4 hrs) \u2014 barrier reef, then Half Moon Bay with iguanas. Lunch included on the boat. Afternoon: pool & nap recovery. Tonight is the Thursday Island Fish Fry at Bight Park \u2014 local food, music & crafts.',
     earlyMorning: true },
@@ -1975,6 +1976,7 @@ function restaurantMatchesFilter(r) {
   if (activeFilter === 'pizza') return Boolean(r.pizza);
   if (activeFilter === 'fbpick') return Boolean(r.fbPick);
   if (activeFilter === 'toppick') return Boolean(r.topPick);
+  if (activeFilter === 'shortlist') return Boolean(r.shortlist || r.booked);
   return true;
 }
 
@@ -2245,6 +2247,8 @@ function renderDiningCards() {
     card.dataset.toppick = r.topPick ? 'true' : 'false';
 
     const typeLabels = [];
+    if (r.booked) typeLabels.push(`<span class="dining-tag booked-tag">\u2705 Booked \u00B7 ${r.booked}</span>`);
+    if (r.shortlist) typeLabels.push('<span class="dining-tag shortlist-tag">\uD83D\uDCCB Shortlist</span>');
     if (r.topPick) typeLabels.push('<span class="dining-tag toppick-tag">\u2B50 Top Pick</span>');
     if (r.type === 'breakfast' || r.type === 'both') typeLabels.push('<span class="dining-tag breakfast-tag">Breakfast</span>');
     if (r.type === 'dinner' || r.type === 'both') typeLabels.push('<span class="dining-tag dinner-tag">Dinner</span>');
@@ -2322,6 +2326,8 @@ function showRestaurantDetail(id) {
   const oliviaDetailHtml = buildOliviaDetailCallout(d.oliviaOptions);
 
   const typeLabels = [];
+  if (r.booked) typeLabels.push(`<span class="dining-tag booked-tag">✅ Booked · ${r.booked}</span>`);
+  if (r.shortlist) typeLabels.push('<span class="dining-tag shortlist-tag">📋 Shortlist</span>');
   if (r.topPick) typeLabels.push('<span class="dining-tag toppick-tag">⭐ Top Pick</span>');
   if (r.type === 'breakfast' || r.type === 'both') typeLabels.push('<span class="dining-tag breakfast-tag">Breakfast</span>');
   if (r.type === 'dinner' || r.type === 'both') typeLabels.push('<span class="dining-tag dinner-tag">Dinner</span>');
