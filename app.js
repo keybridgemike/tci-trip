@@ -2146,6 +2146,7 @@ function buildOliviaDetailCallout(oliviaOptions) {
 
 function initDining() {
   renderTopPicks();
+  renderCommunityRecs();
   renderDiningCards();
   initDiningFilters();
   initDiningMap();
@@ -2186,6 +2187,44 @@ function renderTopPicks() {
   }).join('');
 
   wrap.querySelectorAll('.top-pick-card').forEach(btn => {
+    btn.addEventListener('click', () => showRestaurantDetail(btn.dataset.restaurant));
+  });
+}
+
+// Community recs, grouped by vibe — names are clickable chips into the deep-dive.
+const COMMUNITY_RECS = [
+  { title: 'Easy group dinners', blurb: 'Relaxed, crowd-friendly spots — no fuss, good value.',
+    ids: ['somewhere', 'hemingways', 'sharkbite', 'mangoreef', 'mrgroupers', 'turkskebab', 'cocovan', 'cabana', 'bellaluna'] },
+  { title: 'Breakfast & coffee', blurb: 'Shay got the most love; the rest are easy morning stops.',
+    ids: ['shay', 'hemingways', 'somewhere', 'lemon2go'], extras: ['Tribe', 'The Daily', 'Groceries for villa breakfasts'] },
+  { title: 'Seafood & conch', blurb: "Mr. Grouper's drew raves for conch fritters & coconut grouper; Da Conch Shack is more experience than pure value.",
+    ids: ['mrgroupers', 'daconch'] },
+  { title: 'Splurge & special-occasion', blurb: 'Most-recommended dinners from the latest thread (the strongest are ⭐ Top Picks above).',
+    ids: ['marineroom', 'indigo', 'cocobistro', 'landandsea', 'gracescottage', 'embers', 'infiniti', 'pelicanbay', 'salina', 'almondtree', 'suiren', 'caicoscafe', 'baci', 'parallel23'],
+    extras: ['Vita — one diner wasn’t thrilled'] },
+];
+
+function renderCommunityRecs() {
+  const wrap = document.getElementById('community-recs');
+  if (!wrap) return;
+
+  wrap.innerHTML = COMMUNITY_RECS.map(group => {
+    const chips = group.ids.map(id => {
+      const r = RESTAURANTS.find(x => x.id === id);
+      if (!r) return '';
+      const rating = r.rating != null ? `<span class="rec-chip-rating">${r.rating}★</span>` : '<span class="rec-chip-rating rec-chip-new">New</span>';
+      return `<button class="rec-chip" type="button" data-restaurant="${r.id}">${r.name} ${rating}</button>`;
+    }).join('');
+    const extras = (group.extras || []).map(name => `<span class="rec-chip rec-chip-extra">${name}</span>`).join('');
+    return `
+      <div class="rec-group">
+        <h4>${group.title}</h4>
+        <p class="rec-group-blurb">${group.blurb}</p>
+        <div class="rec-chips">${chips}${extras}</div>
+      </div>`;
+  }).join('');
+
+  wrap.querySelectorAll('.rec-chip[data-restaurant]').forEach(btn => {
     btn.addEventListener('click', () => showRestaurantDetail(btn.dataset.restaurant));
   });
 }

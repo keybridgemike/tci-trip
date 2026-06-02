@@ -193,6 +193,30 @@ a:hover { text-decoration: underline; }
   line-height: 1.55;
   color: var(--gray-600);
 }
+.facebook-recs-intro {
+  font-size: 0.86rem;
+  line-height: 1.55;
+  color: var(--gray-600);
+  margin-top: 4px;
+}
+.rec-group-blurb { margin-bottom: 10px; }
+.rec-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.rec-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 600;
+  color: var(--gray-800); background: var(--white);
+  border: 1px solid var(--gray-200); border-radius: 20px;
+  padding: 5px 12px; cursor: pointer; transition: all 0.15s; text-align: left;
+}
+.rec-chip:hover { border-color: var(--ocean); color: var(--ocean); box-shadow: var(--shadow); transform: translateY(-1px); }
+.rec-chip-rating { font-size: 0.72rem; font-weight: 700; color: var(--sand-dark); }
+.rec-chip:hover .rec-chip-rating { color: var(--ocean); }
+.rec-chip-new { color: #b45309; }
+.rec-chip-extra {
+  cursor: default; color: var(--gray-400); background: var(--gray-50);
+  border-style: dashed; font-weight: 500;
+}
+.rec-chip-extra:hover { border-color: var(--gray-200); color: var(--gray-400); box-shadow: none; transform: none; }
 .facebook-recs-footnote {
   margin-top: 14px;
   padding-top: 12px;
