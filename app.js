@@ -33,7 +33,6 @@ const RESTAURANTS = [
   { id: 'mangoreef', name: 'Mango Reef', type: 'dinner', lat: 21.7843, lng: -72.2279, rating: 4.5, reviews: 1110, price: '$$', distance: '6.0 mi', driveTime: '14 min', nearby: false, hostRecommended: true, fbPick: true, fbMentions: 1, cuisine: 'Caribbean & International' },
   { id: 'sharkbite', name: 'Sharkbite Bar & Grill', type: 'dinner', lat: 21.7905, lng: -72.2077, rating: 4.2, reviews: 1550, price: '$$', distance: '6.4 mi', driveTime: '14 min', nearby: false, fbPick: true, cuisine: 'Marina Bar Food' },
   { id: 'magnolia', name: 'Magnolia Restaurant & Lounge', type: 'dinner', lat: 21.7878, lng: -72.2197, rating: 4.4, reviews: 986, price: '$$$', distance: '6.7 mi', driveTime: '15 min', nearby: false, hostRecommended: true, fbPick: true, fbMentions: 1, cuisine: 'Modern Coastal' },
-  { id: 'fishfry', name: 'Island Fish Fry', type: 'dinner', lat: 21.7858, lng: -72.2004, rating: 4.6, reviews: 500, price: '$$-$$$', distance: '7.0 mi', driveTime: '15 min', nearby: false, hostRecommended: true, fbPick: true, fbMentions: 1, cuisine: 'Local Food Event' },
   { id: 'baci', name: 'Baci Ristorante', type: 'dinner', lat: 21.790, lng: -72.210, rating: 4.5, reviews: 850, price: '$$', distance: '6.5 mi', driveTime: '14 min', nearby: false, pizza: true, fbPick: true, fbMentions: 1, cuisine: 'Italian' },
   { id: 'mrgroupers', name: "Mr. Grouper's", type: 'dinner', lat: 21.790, lng: -72.196, rating: 4.4, reviews: 3000, price: '$-$$', distance: '7.0 mi', driveTime: '15 min', nearby: false, fbPick: true, cuisine: 'Local TCI Seafood' },
   { id: 'lua', name: 'Lua Beach House', type: 'both', lat: 21.7745, lng: -72.2030, rating: 4.9, reviews: 120, price: '$$$', distance: '7.3 mi', driveTime: '15 min', nearby: false, pizza: true, cuisine: 'Global Fusion' },
@@ -1082,37 +1081,6 @@ const DETAILS = {
     },
   },
 
-  fishfry: {
-    hostNote: 'Recommended by the VRBO host in May 2026 as "The Local Fish" held every Thursday night in Grace Bay next to Mr. Grouper\'s, no reservations needed, festivities beginning at 5:30 PM.',
-    synopsis: 'Weekly Thursday evening local food event at PTV Stubbs Diamond Plaza near Grace Bay and Mr. Grouper\'s. It brings together local food and drink vendors, souvenir stalls, live music, cultural performances, and Junkanoo. This matches the host\'s "Local Fish" recommendation by day, location, timing, and no-reservation setup.',
-    familyNote: 'Very family-friendly early in the evening and a great cultural night. Go near the 5:30 PM start for easier parking, shorter lines, and a calmer scene before it gets crowded.',
-    hours: 'Thursdays 5:30 PM - 9:30 PM',
-    phone: '',
-    email: '',
-    website: 'https://turksandcaicostourism.com/turks-caicos-fish-fry/',
-    menuLink: 'https://turksandcaicostourism.com/turks-caicos-fish-fry/',
-    reservations: 'No reservations needed.',
-    address: 'PTV Stubbs Diamond Plaza, The Bight, Providenciales',
-    instagram: '',
-    tripadvisor: '',
-    perPerson: '$25-45',
-    menu: [
-      { section: 'What To Expect', items: [
-        { name: 'Local seafood, chicken, ribs, sides, and island drinks from multiple vendors', price: '' },
-        { name: 'Souvenir and local craft stalls', price: '' },
-        { name: 'Live band and cultural performances', price: '' },
-        { name: 'Junkanoo procession later in the evening', price: '' },
-      ]},
-    ],
-    reviews: [
-      { text: 'Official tourism page confirms the Thursday 5:30-9:30 PM schedule, PTV Stubbs Diamond Plaza location, local vendors, live band, cultural performances, and Junkanoo.', author: 'Experience Turks and Caicos', date: 'Current 2026 planning', rating: 5 },
-    ],
-    oliviaOptions: {
-      items: 'Vendor choice: chicken, ribs, fries, simple sides, drinks, and dessert/snack stands are likely.',
-      source: { type: 'website', url: 'https://turksandcaicostourism.com/turks-caicos-fish-fry/', note: null },
-    },
-  },
-
   opus: {
     hostNote: 'Recommended by the VRBO host in May 2026 as a more fine-dining wine bar with a garden-themed setting.',
     synopsis: 'Grace Bay wine bar and grill near Ocean Club, known for steaks, meat cuts, seafood, a wide wine and cocktail list, indoor air-conditioned dining, and outdoor courtyard seating. It is a good fit for a nicer dinner where Carrie has seafood choices and Olivia still has steak, pasta, pizza-adjacent, or simple grill options to investigate.',
@@ -1843,7 +1811,6 @@ const ITINERARY = [
 // any already-saved selections keep matching.
 function decorateMealLabel(r) {
   if (r.id === 'lasbrisas') return 'Las Brisas (walking distance!)';
-  if (r.id === 'fishfry') return 'Island Fish Fry (Thursday)';
   return r.name;
 }
 function buildMealOptions(meal) {
