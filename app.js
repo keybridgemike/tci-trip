@@ -1819,40 +1819,45 @@ const ITINERARY = [
   { day: 2, date: 'Tue, Jun 16', title: 'First Full Day \u2014 Sleep In & Beach',
     suggestion: 'No alarm! Sleep in and enjoy a lazy morning. Stroll to Sapodilla Bay Beach (3 min walk). Afternoon pool time \u2014 try the villa\'s kayaks or paddleboards on Chalk Sound.' },
   { day: 3, date: 'Wed, Jun 17', title: 'Sleep In & Parasailing',
-    suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach. Browse shops after. Da Conch Shack Junkanoo party tonight?' },
+    suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach; browse the shops after. Dinner: Embers \u2014 open-fire grill, big flavors, no view but a great plate (book ahead).' },
   { day: 4, date: 'Thu, Jun 18', title: '\u2600\uFE0F Early Morning \u2014 Snorkeling Cruise',
-    suggestion: 'Early start! Caicos Dream Tours snorkeling cruise departs 9 AM (4 hrs). Snorkel the barrier reef, stop at Half Moon Bay with iguanas. Lunch included on boat. Afternoon: pool & nap recovery.',
+    suggestion: 'Early start (the only truly necessary one). Half-day Caicos Dream Tours snorkeling cruise departs 9 AM (~4 hrs) \u2014 barrier reef, then Half Moon Bay with iguanas. Lunch included on the boat. Afternoon: pool & nap recovery. Tonight is the Thursday Island Fish Fry at Bight Park \u2014 local food, music & crafts.',
     earlyMorning: true },
   { day: 5, date: 'Fri, Jun 19', title: 'Sleep In & Beach Day',
     suggestion: 'Sleep in! Try Taylor Bay Beach \u2014 calm shallow water, perfect for Olivia. Or revisit Grace Bay. Lua Beach House Friday Pizza Night could be fun tonight!' },
-  { day: 6, date: 'Sat, Jun 20', title: '\u2600\uFE0F Early-ish \u2014 Kayak Eco-Tour',
-    suggestion: 'Kayak eco-tour with Big Blue Collective \u2014 paddle through mangroves, visit the iguana sanctuary at Little Water Cay. Half-day tour. Afternoon: pool time.',
+  { day: 6, date: 'Sat, Jun 20', title: '\u2600\uFE0F Earlyish \u2014 Potcake Puppy Walk',
+    suggestion: 'The one early-ish start that\u2019s worth it: Potcake Place puppy walk on Grace Bay Beach (Olivia & Elise will love this). Arrive ~9:30 AM \u2014 open Mon\u2013Sat from 10 AM, first-come and the line builds early. Walk a rescue pup, then stay for Grace Bay beach + shopping & ice cream. Kayaks/SUPs are always free at the villa on Chalk Sound if you still want to paddle. Tonight: grab a Top Pick (Marine Room, Indigo or Coco Bistro).',
     earlyMorning: true },
   { day: 7, date: 'Sun, Jun 21', title: 'Chill Day \u2014 Pasta Night at the Villa',
     suggestion: 'Sleep in \u2014 this is your recovery day. Pool morning, maybe drive around the island: Chalk Sound lookout, Blue Hills area. Tonight: cook pasta & meat sauce at the villa! Hit up a local grocery (IGA or Graceway Gourmet).' },
-  { day: 8, date: 'Mon, Jun 22', title: 'Last Full Day \u2014 Soak It All In',
-    suggestion: 'Sleep in one more time. Return to your favorite beach. Last swim in the villa pool. Sunset walk on Sapodilla Bay. Special farewell dinner \u2014 Coco Bistro or Coyaba?' },
+  { day: 8, date: 'Mon, Jun 22', title: 'Last Full Day \u2014 \ud83d\udc0e Horseback Finale',
+    suggestion: 'Sleep in, then an easy beach + pool morning. BOOKED: Provo Ponies group ride for 4 at 3:30 PM (allow 2\u20132.5 hrs) on Long Bay Beach \u2014 ride right into the shallow turquoise water! Self-drive to 32 Dolphin Lane, Long Bay Hills; arrive at 3:30 sharp, not earlier. Wear closed-toe shoes (no flip-flops) + light long pants/leggings; you can get wet to your thighs. Bring a reusable water bottle, sunscreen, hat & cash for tips. Conf. B-KD8PY9M \u00b7 WhatsApp +1 649-241-6350. Clean up after, then a farewell Top Pick dinner.',
+    earlyMorning: false },
   { day: 9, date: 'Tue, Jun 23', title: 'Departure Day', type: 'departure-day',
     suggestion: 'Check out by 11 AM. Morning at the beach or pool. Return rental car at PLS. United UA1820 PLS \u2192 IAD departs 5:15 PM and arrives 8:31 PM, then drive home from Dulles.' },
 ];
 
-const BREAKFAST_OPTIONS = [
-  'Undecided', 'Shay Cafe & Lounge', "Hemingway's on the Beach",
-  'Lua Beach House', 'Bay Bistro', 'Caicos Bakery', 'Lemon2Go',
-  'Las Brisas (walking distance!)', 'Cook at villa',
-];
+// Meal dropdown options are derived from the RESTAURANTS list so they can never
+// drift out of sync again. A couple of legacy labels are preserved verbatim so
+// any already-saved selections keep matching.
+function decorateMealLabel(r) {
+  if (r.id === 'lasbrisas') return 'Las Brisas (walking distance!)';
+  if (r.id === 'fishfry') return 'Island Fish Fry (Thursday)';
+  return r.name;
+}
+function buildMealOptions(meal) {
+  const matches = meal === 'breakfast'
+    ? (r) => r.type === 'breakfast' || r.type === 'both'
+    : (r) => r.type === 'dinner' || r.type === 'both';
+  return RESTAURANTS
+    .filter(matches)
+    .slice()
+    .sort((a, b) => (parseFloat(a.distance) || 99) - (parseFloat(b.distance) || 99))
+    .map(decorateMealLabel);
+}
 
-const DINNER_OPTIONS = [
-  'Undecided', 'Las Brisas (walking distance!)', "Bugaloo's Conch Crawl",
-  "Omar's Beach Hut", 'Da Conch Shack', 'Mangrove Bay', "Sweet T's",
-  'Mango Reef', 'Magnolia Restaurant & Lounge', 'Island Fish Fry (Thursday)',
-  'Baci Ristorante', "Mr. Grouper's", 'Sharkbite Bar & Grill', 'Turks Kebab',
-  'Cabana Bar at Ocean Club East', 'Cocovan', 'Blue Water Bistro',
-  'Bay Bistro', "Hemingway's on the Beach", 'Infiniti Restaurant & Raw Bar',
-  'Opus Wine Bar & Grill', 'The Terrace on Grace Bay', 'Parallel 23',
-  'Coco Bistro', 'Coyaba Restaurant', 'Caicos Cafe', 'Provence by Eric', 'Lua Beach House',
-  'Cook at villa - Pasta Night!', 'Cook at villa',
-];
+const BREAKFAST_OPTIONS = ['Undecided', ...buildMealOptions('breakfast'), 'Cook at villa'];
+const DINNER_OPTIONS = ['Undecided', ...buildMealOptions('dinner'), 'Cook at villa - Pasta Night!', 'Cook at villa'];
 
 // --- State Management ---
 const STORAGE_KEY = 'tci-trip-2026';
@@ -2543,10 +2548,10 @@ function renderActivitiesContent() {
       providers: [
         { name: 'Potcake Place K9 Rescue', info: 'Free! Mon\u2013Sat from 10 AM. Saltmills Plaza, Grace Bay.', website: 'https://www.potcakeplace.com/', tripadvisor: '' },
       ]},
-    { id: 'horseback', icon: '\ud83d\udc0e', title: 'Horseback Riding on the Beach', who: 'Everyone (ages 7+, Olivia qualifies!)',
-      desc: 'Ride horses along Long Bay Beach and into the shallow turquoise water. 60 or 90 minute guided rides, morning (9:30 AM) or afternoon (3:30 PM summer). Max 12 riders per group. Everyone rides their own horse. 230 lb weight limit, helmets required under 18.',
+    { id: 'horseback', icon: '\ud83d\udc0e', title: 'Horseback Riding on the Beach', who: 'Mike, Olivia & 2 more', priority: true,
+      desc: '\u2705 BOOKED \u2014 Provo Ponies group ride for 4 on Mon, Jun 22 at 3:30 PM (allow 2\u20132.5 hrs). Self-driving to 32 Dolphin Lane, Long Bay Hills \u2014 arrive right at start time, not earlier. Ride along Long Bay Beach and into the shallow turquoise water; everyone gets their own horse. Wear closed-toe shoes (no flip-flops) and light long pants/leggings; you can get wet to your thighs. Bring a reusable water bottle, sunscreen, hat & cash for tips. Helmets required under 18.',
       providers: [
-        { name: 'Provo Ponies', info: '60\u201390 min rides, ~$125\u2013150/person. Long Bay Beach.', website: 'https://provoponies.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d1024318-Reviews-Provo_Ponies-Providenciales_Turks_and_Caicos.html' },
+        { name: 'Provo Ponies', info: 'Booked: 4 riders, Mon Jun 22, 3:30 PM ($676.69). Conf. B-KD8PY9M \u00b7 WhatsApp +1 649-241-6350 \u00b7 provoponiestci@gmail.com', website: 'https://provoponies.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d1024318-Reviews-Provo_Ponies-Providenciales_Turks_and_Caicos.html' },
       ]},
     { id: 'sunset', icon: '\ud83c\udf05', title: 'Sunset Cruise / Pontoon', who: 'Everyone', hostRecommended: true,
       desc: 'A 2\u20132.5 hour sunset cruise at golden hour. The host specifically recommended the Las Brisas sunset pontoon boat near the villa, plus the existing Grace Bay catamaran options remain strong.',
