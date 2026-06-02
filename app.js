@@ -1822,7 +1822,7 @@ const ITINERARY = [
   { day: 3, date: 'Wed, Jun 17', title: 'Sleep In & Parasailing',
     suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach; browse the shops after. Dinner: \u2705 Embers BOOKED \u2014 6:30 PM, table for 4 on the covered patio (OpenTable conf. #26974 \u00b7 (649) 431-5161). Open-fire grill, big flavors.' },
   { day: 4, date: 'Thu, Jun 18', title: '\u2600\uFE0F Early Morning \u2014 Snorkeling Cruise',
-    suggestion: 'Early start (the only truly necessary one). Half-day Caicos Dream Tours snorkeling cruise departs 9 AM (~4 hrs) \u2014 barrier reef, then Half Moon Bay with iguanas. Lunch included on the boat. Afternoon: pool & nap recovery. Tonight is the Thursday Island Fish Fry at Bight Park \u2014 local food, music & crafts.',
+    suggestion: 'Early start (the only truly necessary one). Half-day Caicos Dream Tours snorkeling cruise departs 9 AM (~4 hrs) \u2014 barrier reef, then Half Moon Bay with iguanas. Lunch included on the boat. Afternoon: pool & nap recovery. Keep dinner easy after a big day \u2014 a casual nearby spot or a villa night.',
     earlyMorning: true },
   { day: 5, date: 'Fri, Jun 19', title: 'Sleep In & Beach Day',
     suggestion: 'Sleep in! Try Taylor Bay Beach \u2014 calm shallow water, perfect for Olivia. Or revisit Grace Bay. Lua Beach House Friday Pizza Night could be fun tonight!' },
