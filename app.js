@@ -1863,6 +1863,7 @@ function initCountdown() {
 // FLIGHT MAP
 // ============================================
 function initFlightMap() {
+  if (!document.getElementById('flight-map') || typeof L === 'undefined') return;
   const map = L.map('flight-map', { scrollWheelZoom: false, zoomControl: true }).setView([30, -75], 5);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19,
@@ -1904,6 +1905,7 @@ function initFlightMap() {
 function initGallery() {
   const track = document.getElementById('gallery-track');
   const dotsContainer = document.getElementById('gallery-dots');
+  if (!track || !dotsContainer) return;
   let currentSlide = 0;
 
   VILLA_IMAGES.forEach((url, i) => {
@@ -1943,7 +1945,7 @@ function restaurantMatchesFilter(r) {
   if (activeFilter === 'pizza') return Boolean(r.pizza);
   if (activeFilter === 'fbpick') return Boolean(r.fbPick);
   if (activeFilter === 'toppick') return Boolean(r.topPick);
-  if (activeFilter === 'shortlist') return Boolean(r.shortlist || r.booked);
+  if (activeFilter === 'shortlist') return isShortlisted(r) || getReservation(r).reserved;
   return true;
 }
 
@@ -1960,6 +1962,27 @@ function buildRatingBlock(r) {
           ${count}
         </div>`;
 }
+
+// --- Planner: user-controlled shortlist + reservations (persisted to localStorage) ---
+// Data flags (r.shortlist / r.booked) act as the initial default; once the user
+// toggles a restaurant, their choice is stored and wins.
+function isShortlisted(r) {
+  const v = getState()[`dining_${r.id}_shortlist`];
+  return v === undefined ? !!r.shortlist : !!v;
+}
+function getReservation(r) {
+  const s = getState();
+  const reserved = s[`dining_${r.id}_reserved`];
+  const note = s[`dining_${r.id}_resnote`];
+  return {
+    reserved: reserved === undefined ? !!r.booked : !!reserved,
+    note: note === undefined ? (r.booked || '') : note,
+  };
+}
+function setShortlist(id, val) { updateState(`dining_${id}_shortlist`, val); }
+function setReserved(id, val) { updateState(`dining_${id}_reserved`, val); }
+function setResNote(id, val) { updateState(`dining_${id}_resnote`, val); }
+function refreshDiningViews() { renderDiningCards(); filterDiningCards(); }
 
 function getDiningPinColor(r) {
   if (r.topPick) return '#eab308';
@@ -2213,9 +2236,11 @@ function renderDiningCards() {
     card.dataset.fbpick = r.fbPick ? 'true' : 'false';
     card.dataset.toppick = r.topPick ? 'true' : 'false';
 
+    const res = getReservation(r);
+    const sl = isShortlisted(r);
     const typeLabels = [];
-    if (r.booked) typeLabels.push(`<span class="dining-tag booked-tag">\u2705 Booked \u00B7 ${r.booked}</span>`);
-    if (r.shortlist) typeLabels.push('<span class="dining-tag shortlist-tag">\uD83D\uDCCB Shortlist</span>');
+    if (res.reserved) typeLabels.push(`<span class="dining-tag booked-tag">\u2705 Reserved${res.note ? ' \u00B7 ' + escapeHtml(res.note) : ''}</span>`);
+    if (sl) typeLabels.push('<span class="dining-tag shortlist-tag">\uD83D\uDCCB Shortlist</span>');
     if (r.topPick) typeLabels.push('<span class="dining-tag toppick-tag">\u2B50 Top Pick</span>');
     if (r.type === 'breakfast' || r.type === 'both') typeLabels.push('<span class="dining-tag breakfast-tag">Breakfast</span>');
     if (r.type === 'dinner' || r.type === 'both') typeLabels.push('<span class="dining-tag dinner-tag">Dinner</span>');
@@ -2241,6 +2266,10 @@ function renderDiningCards() {
         <span class="drive-time">${r.driveTime}</span>
       </div>
       <p class="dining-card-synopsis">${detail ? detail.synopsis.substring(0, 120) + '...' : ''}</p>
+      <div class="dining-card-actions">
+        <button class="card-action${sl ? ' active' : ''}" data-act="shortlist" type="button">${sl ? '★ Shortlisted' : '☆ Shortlist'}</button>
+        <button class="card-action${res.reserved ? ' active' : ''}" data-act="reserve" type="button">${res.reserved ? '✅ Reserved' : '＋ Reserved'}</button>
+      </div>
       <div class="dining-card-footer">
         <span class="per-person">${detail ? detail.perPerson + '/person' : ''}</span>
         <span class="view-detail">View Details &rarr;</span>
@@ -2248,6 +2277,14 @@ function renderDiningCards() {
     `;
 
     card.addEventListener('click', () => showRestaurantDetail(r.id));
+    card.querySelectorAll('.card-action').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (btn.dataset.act === 'shortlist') setShortlist(r.id, !isShortlisted(r));
+        else setReserved(r.id, !getReservation(r).reserved);
+        refreshDiningViews();
+      });
+    });
     grid.appendChild(card);
   });
 }
@@ -2292,9 +2329,11 @@ function showRestaurantDetail(id) {
 
   const oliviaDetailHtml = buildOliviaDetailCallout(d.oliviaOptions);
 
+  const res = getReservation(r);
+  const sl = isShortlisted(r);
   const typeLabels = [];
-  if (r.booked) typeLabels.push(`<span class="dining-tag booked-tag">✅ Booked · ${r.booked}</span>`);
-  if (r.shortlist) typeLabels.push('<span class="dining-tag shortlist-tag">📋 Shortlist</span>');
+  if (res.reserved) typeLabels.push(`<span class="dining-tag booked-tag">✅ Reserved${res.note ? ' · ' + escapeHtml(res.note) : ''}</span>`);
+  if (sl) typeLabels.push('<span class="dining-tag shortlist-tag">📋 Shortlist</span>');
   if (r.topPick) typeLabels.push('<span class="dining-tag toppick-tag">⭐ Top Pick</span>');
   if (r.type === 'breakfast' || r.type === 'both') typeLabels.push('<span class="dining-tag breakfast-tag">Breakfast</span>');
   if (r.type === 'dinner' || r.type === 'both') typeLabels.push('<span class="dining-tag dinner-tag">Dinner</span>');
@@ -2360,6 +2399,11 @@ function showRestaurantDetail(id) {
         <span class="detail-per-person">${d.perPerson}/person</span>
       </div>
       <div class="tag-row">${typeLabels.join('')}</div>
+      <div class="detail-planner">
+        <button class="planner-btn${sl ? ' active' : ''}" id="detail-shortlist" type="button">${sl ? '★ Shortlisted' : '☆ Add to shortlist'}</button>
+        <button class="planner-btn${res.reserved ? ' active' : ''}" id="detail-reserve" type="button">${res.reserved ? '✅ Reserved' : '＋ Mark reserved'}</button>
+        <input type="text" id="detail-resnote" class="planner-note" placeholder="Reservation details — date, time, conf #" value="${escapeHtml(res.note)}">
+      </div>
       ${topButtonsHtml ? `<div class="detail-action-btns">${topButtonsHtml}</div>` : ''}
     </div>
 
@@ -2424,6 +2468,39 @@ function showRestaurantDetail(id) {
       section.classList.toggle('open');
     });
   });
+
+  // Planner controls (shortlist + reservation)
+  const slBtn = document.getElementById('detail-shortlist');
+  const resBtn = document.getElementById('detail-reserve');
+  const noteInput = document.getElementById('detail-resnote');
+  if (slBtn) slBtn.addEventListener('click', () => {
+    const now = !isShortlisted(r);
+    setShortlist(r.id, now);
+    slBtn.classList.toggle('active', now);
+    slBtn.textContent = now ? '★ Shortlisted' : '☆ Add to shortlist';
+    refreshDiningViews();
+  });
+  if (resBtn) resBtn.addEventListener('click', () => {
+    const now = !getReservation(r).reserved;
+    setReserved(r.id, now);
+    resBtn.classList.toggle('active', now);
+    resBtn.textContent = now ? '✅ Reserved' : '＋ Mark reserved';
+    refreshDiningViews();
+  });
+  if (noteInput) {
+    let t;
+    noteInput.addEventListener('input', () => {
+      clearTimeout(t);
+      t = setTimeout(() => {
+        setResNote(r.id, noteInput.value);
+        if (noteInput.value.trim() && !getReservation(r).reserved) {
+          setReserved(r.id, true);
+          if (resBtn) { resBtn.classList.add('active'); resBtn.textContent = '✅ Reserved'; }
+        }
+        refreshDiningViews();
+      }, 300);
+    });
+  }
 
   // Mini map
   setTimeout(() => initDetailMap(r), 100);
