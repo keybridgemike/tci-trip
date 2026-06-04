@@ -506,6 +506,20 @@ a.rating-count:hover { text-decoration-color: var(--ocean); }
   border-radius: 10px; font-family: 'Inter', sans-serif; font-size: 0.85rem; color: var(--gray-800);
 }
 .planner-note:focus { outline: none; border-color: var(--ocean); }
+
+/* ---- Cross-device sync status pill ---- */
+.sync-status {
+  position: fixed; left: 14px; bottom: 14px; z-index: 1200;
+  font-family: 'Inter', sans-serif; font-size: 0.74rem; font-weight: 700;
+  padding: 7px 12px; border-radius: 999px; box-shadow: var(--shadow);
+  background: var(--white); color: var(--gray-500); border: 1px solid var(--gray-200);
+  pointer-events: none; transition: opacity 0.3s; opacity: 0.92;
+}
+.sync-status:empty { display: none; }
+.sync-status.sync-ok { color: #166534; border-color: #bbf7d0; background: #f0fdf4; }
+.sync-status.sync-busy { color: #92400e; border-color: #fde68a; background: #fffbeb; }
+.sync-status.sync-off { color: #9a3412; border-color: #fed7aa; background: #fff7ed; }
+@media (max-width: 600px) { .sync-status { font-size: 0.68rem; padding: 6px 10px; left: 10px; bottom: 10px; } }
 .rating-new { font-size: 0.72rem; font-weight: 800; color: #854d0e; background: #fef9c3; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
 .popup-toppick { display: inline-block; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #854d0e; background: #fef9c3; padding: 2px 7px; border-radius: 4px; margin-bottom: 5px; }
 .cash-tag { background: #fecaca; color: #991b1b; }

@@ -1832,9 +1832,114 @@ const STORAGE_KEY = 'tci-trip-2026';
 function loadState() { try { const s = localStorage.getItem(STORAGE_KEY); return s ? JSON.parse(s) : {}; } catch { return {}; } }
 function saveState(state) { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
 function getState() { return loadState(); }
-function updateState(key, value) { const s = loadState(); s[key] = value; saveState(s); }
+function updateState(key, value) { const s = loadState(); s[key] = value; saveState(s); scheduleSyncPush(); }
 
 function escapeHtml(str) { const d = document.createElement('div'); d.textContent = str; return d.innerHTML; }
+
+// ============================================
+// CROSS-DEVICE SYNC (shared, no-account JSON store)
+// Local-first: localStorage is always the working copy; the remote mirrors it so
+// the plan syncs across devices/family. Degrades gracefully to local-only.
+// ============================================
+const SYNC_ENDPOINT = 'https://jsonblob.com/api/jsonBlob/019e905e-2a2c-76b9-82da-9457392a2b50';
+const SYNC_APP = 'tci-trip-2026';
+let syncLastRemoteStr = null;   // JSON of state last known to match remote
+let syncPushTimer = null;
+let syncStatusEl = null;
+let syncStarted = false;
+
+function setSyncStatus(kind) {
+  syncStatusEl = syncStatusEl || document.getElementById('sync-status');
+  if (!syncStatusEl) return;
+  const map = {
+    synced:  ['☁ Synced across devices', 'sync-ok'],
+    saving:  ['↻ Saving…', 'sync-busy'],
+    offline: ['⚠ Saved on this device only', 'sync-off'],
+  };
+  const [txt, cls] = map[kind] || map.synced;
+  syncStatusEl.textContent = txt;
+  syncStatusEl.className = 'sync-status ' + cls;
+}
+
+async function syncFetchRemote() {
+  if (!SYNC_ENDPOINT) return undefined;
+  try {
+    const res = await fetch(SYNC_ENDPOINT, { method: 'GET', headers: { Accept: 'application/json' }, cache: 'no-store' });
+    if (!res.ok) return res.status === 404 ? null : undefined;
+    const data = await res.json();
+    if (data && data._app === SYNC_APP && data.state && typeof data.state === 'object') return data.state;
+    return null; // reachable but no shared plan yet (or unrelated content)
+  } catch { return undefined; } // network/CORS error → treat as offline
+}
+
+async function syncPushRemote() {
+  if (!SYNC_ENDPOINT) return;
+  const state = loadState();
+  const body = JSON.stringify({ _app: SYNC_APP, updatedAt: Date.now(), state });
+  setSyncStatus('saving');
+  try {
+    const res = await fetch(SYNC_ENDPOINT, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body });
+    if (res.ok) { syncLastRemoteStr = JSON.stringify(state); setSyncStatus('synced'); }
+    else setSyncStatus('offline');
+  } catch { setSyncStatus('offline'); }
+}
+
+function scheduleSyncPush() {
+  if (!SYNC_ENDPOINT || !syncStarted) return;
+  clearTimeout(syncPushTimer);
+  setSyncStatus('saving');
+  syncPushTimer = setTimeout(syncPushRemote, 900);
+}
+
+function applyRemoteState(remoteState) {
+  saveState(remoteState);
+  syncLastRemoteStr = JSON.stringify(remoteState);
+  rerenderStatefulViews();
+  setSyncStatus('synced');
+}
+
+function rerenderStatefulViews() {
+  try { refreshDiningViews(); } catch (e) {}
+  try { initItinerary(); } catch (e) {}
+  try { renderActivitiesContent(); } catch (e) {}
+  try { renderCustomActivities(); } catch (e) {}
+  try {
+    const rn = document.getElementById('rental-notes');
+    if (rn && document.activeElement !== rn) rn.value = getState().rentalNotes || '';
+  } catch (e) {}
+}
+
+async function syncPoll() {
+  const ae = document.activeElement;
+  if (ae && /^(INPUT|TEXTAREA|SELECT)$/.test(ae.tagName)) return; // don't clobber active editing
+  const remote = await syncFetchRemote();
+  if (remote === undefined) { setSyncStatus('offline'); return; }
+  const localStr = JSON.stringify(loadState());
+  const localDirty = localStr !== syncLastRemoteStr;
+  if (remote === null) { if (localDirty) scheduleSyncPush(); return; }
+  const remoteStr = JSON.stringify(remote);
+  if (remoteStr === localStr) { syncLastRemoteStr = remoteStr; setSyncStatus('synced'); return; }
+  if (localDirty) scheduleSyncPush();   // our unsynced edits win this round
+  else applyRemoteState(remote);        // adopt another device's change
+}
+
+async function initSync() {
+  if (!SYNC_ENDPOINT) { setSyncStatus('offline'); return; }
+  syncStarted = true;
+  setSyncStatus('saving');
+  const remote = await syncFetchRemote();
+  if (remote === undefined) {
+    setSyncStatus('offline');
+  } else if (remote === null) {
+    await syncPushRemote();             // seed the shared plan from this device
+  } else {
+    const remoteStr = JSON.stringify(remote);
+    const localStr = JSON.stringify(loadState());
+    if (remoteStr !== localStr) applyRemoteState(remote);
+    else { syncLastRemoteStr = remoteStr; setSyncStatus('synced'); }
+  }
+  setInterval(syncPoll, 12000);
+}
 
 // ============================================
 // COUNTDOWN
@@ -2549,6 +2654,7 @@ function hideRestaurantDetail() {
 function initItinerary() {
   const grid = document.getElementById('itinerary-grid');
   const state = getState();
+  grid.innerHTML = ''; // idempotent: safe to re-render (e.g. on remote sync)
 
   ITINERARY.forEach(day => {
     const card = document.createElement('div');
@@ -3018,4 +3124,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initActivities();
   initCarRental();
   initNav();
+  initSync();
 });
