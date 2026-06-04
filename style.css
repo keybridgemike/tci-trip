@@ -491,6 +491,20 @@ a.rating-count:hover { text-decoration-color: var(--ocean); }
 .card-action:hover { border-color: var(--ocean); color: var(--ocean); }
 .card-action[data-act="shortlist"].active { background: #4338ca; border-color: #4338ca; color: #fff; }
 .card-action[data-act="reserve"].active { background: #16a34a; border-color: #16a34a; color: #fff; }
+.card-action.card-dismiss { color: #b91c1c; }
+.card-action.card-dismiss:hover { border-color: #b91c1c; color: #b91c1c; }
+.card-action.card-dismiss.active { background: #6b7280; border-color: #6b7280; color: #fff; }
+.dining-card.dismissed { opacity: 0.5; filter: grayscale(0.6); }
+.dining-card.dismissed:hover { opacity: 0.78; }
+.planner-dismiss { color: #b91c1c; }
+.planner-dismiss.active { background: #6b7280; border-color: #6b7280; color: #fff; }
+.curator-badge {
+  position: fixed; right: 14px; bottom: 14px; z-index: 1200;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 800;
+  padding: 7px 12px; border-radius: 999px; box-shadow: var(--shadow);
+  background: #1e293b; color: #fff; border: 1px solid #0f172a; pointer-events: none;
+}
+@media (max-width: 600px) { .curator-badge { font-size: 0.66rem; padding: 6px 10px; right: 10px; bottom: 40px; } }
 
 .detail-planner { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; align-items: center; }
 .planner-btn {

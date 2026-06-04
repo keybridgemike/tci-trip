@@ -1818,14 +1818,15 @@ function buildMealOptions(meal) {
     ? (r) => r.type === 'breakfast' || r.type === 'both'
     : (r) => r.type === 'dinner' || r.type === 'both';
   return RESTAURANTS
-    .filter(matches)
+    .filter(r => matches(r) && !isDismissed(r))
     .slice()
     .sort((a, b) => (parseFloat(a.distance) || 99) - (parseFloat(b.distance) || 99))
     .map(decorateMealLabel);
 }
 
-const BREAKFAST_OPTIONS = ['Undecided', ...buildMealOptions('breakfast'), 'Cook at villa'];
-const DINNER_OPTIONS = ['Undecided', ...buildMealOptions('dinner'), 'Cook at villa - Pasta Night!', 'Cook at villa'];
+// Computed at render time so dismissals (and any data changes) are always reflected.
+function breakfastOptions() { return ['Undecided', ...buildMealOptions('breakfast'), 'Cook at villa']; }
+function dinnerOptions() { return ['Undecided', ...buildMealOptions('dinner'), 'Cook at villa - Pasta Night!', 'Cook at villa']; }
 
 // --- State Management ---
 const STORAGE_KEY = 'tci-trip-2026';
@@ -2089,6 +2090,36 @@ function setReserved(id, val) { updateState(`dining_${id}_reserved`, val); }
 function setResNote(id, val) { updateState(`dining_${id}_resnote`, val); }
 function refreshDiningViews() { renderDiningCards(); filterDiningCards(); }
 
+// --- Curator "dismiss/veto": hide a restaurant from every recommendation surface ---
+// Dismissals persist in shared state (so they apply site-wide and across devices).
+// The dismiss/restore controls only appear in curator mode (visit with ?curate=1).
+let CURATOR = false;
+function initCuratorMode() {
+  try {
+    const params = new URLSearchParams(location.search);
+    if (params.has('curate')) localStorage.setItem('tci_curator', params.get('curate') === '0' ? '0' : '1');
+    CURATOR = localStorage.getItem('tci_curator') === '1';
+  } catch (e) { CURATOR = false; }
+  document.body.classList.toggle('curator', CURATOR);
+  updateCuratorBadge();
+}
+function isDismissed(r) { return !!getState()[`dining_${r.id}_dismissed`]; }
+function setDismissed(id, val) { updateState(`dining_${id}_dismissed`, val); }
+function dismissedCount() { return RESTAURANTS.filter(isDismissed).length; }
+function updateCuratorBadge() {
+  const badge = document.getElementById('curator-badge');
+  if (!badge) return;
+  badge.style.display = CURATOR ? 'block' : 'none';
+  if (CURATOR) badge.textContent = `🛠 Curator mode · ${dismissedCount()} hidden`;
+}
+function refreshAfterDismiss() {
+  refreshDiningViews();
+  renderTopPicks();
+  renderCommunityRecs();
+  try { initItinerary(); } catch (e) {}
+  updateCuratorBadge();
+}
+
 function getDiningPinColor(r) {
   if (r.topPick) return '#eab308';
   if (r.nearby) return '#16a34a';
@@ -2148,7 +2179,7 @@ function updateDiningMapMarkers() {
     }),
   }).bindPopup(`<strong>${VILLA.name}</strong><br>Home base in Chalk Sound`).addTo(diningMarkerLayer);
 
-  RESTAURANTS.filter(restaurantMatchesFilter).forEach(r => {
+  RESTAURANTS.filter(r => restaurantMatchesFilter(r) && !isDismissed(r)).forEach(r => {
     const d = DETAILS[r.id];
     const popupHtml = `
       <div class="dining-map-popup">
@@ -2258,7 +2289,7 @@ function renderTopPicks() {
   if (!wrap) return;
 
   const picks = RESTAURANTS
-    .filter(r => r.topPick)
+    .filter(r => r.topPick && !isDismissed(r))
     .sort((a, b) => (b.fbMentions || 0) - (a.fbMentions || 0) || (b.rating || 0) - (a.rating || 0));
 
   wrap.innerHTML = picks.map(r => {
@@ -2308,7 +2339,7 @@ function renderCommunityRecs() {
   wrap.innerHTML = COMMUNITY_RECS.map(group => {
     const chips = group.ids.map(id => {
       const r = RESTAURANTS.find(x => x.id === id);
-      if (!r) return '';
+      if (!r || isDismissed(r)) return '';
       const rating = r.rating != null ? `<span class="rec-chip-rating">${r.rating}★</span>` : '<span class="rec-chip-rating rec-chip-new">New</span>';
       return `<button class="rec-chip" type="button" data-restaurant="${r.id}">${r.name} ${rating}</button>`;
     }).join('');
@@ -2331,9 +2362,11 @@ function renderDiningCards() {
   grid.innerHTML = '';
 
   RESTAURANTS.forEach(r => {
+    const dismissed = isDismissed(r);
+    if (dismissed && !CURATOR) return; // hidden from everyone except the curator
     const detail = DETAILS[r.id];
     const card = document.createElement('div');
-    card.className = 'dining-card';
+    card.className = 'dining-card' + (dismissed ? ' dismissed' : '');
     card.dataset.restaurant = r.id;
     card.dataset.type = r.type;
     card.dataset.nearby = r.nearby ? 'true' : 'false';
@@ -2374,6 +2407,7 @@ function renderDiningCards() {
       <div class="dining-card-actions">
         <button class="card-action${sl ? ' active' : ''}" data-act="shortlist" type="button">${sl ? '★ Shortlisted' : '☆ Shortlist'}</button>
         <button class="card-action${res.reserved ? ' active' : ''}" data-act="reserve" type="button">${res.reserved ? '✅ Reserved' : '＋ Reserved'}</button>
+        ${CURATOR ? `<button class="card-action card-dismiss${dismissed ? ' active' : ''}" data-act="dismiss" type="button">${dismissed ? '↩ Restore' : '👎 Dismiss'}</button>` : ''}
       </div>
       <div class="dining-card-footer">
         <span class="per-person">${detail ? detail.perPerson + '/person' : ''}</span>
@@ -2385,9 +2419,9 @@ function renderDiningCards() {
     card.querySelectorAll('.card-action').forEach(btn => {
       btn.addEventListener('click', e => {
         e.stopPropagation();
-        if (btn.dataset.act === 'shortlist') setShortlist(r.id, !isShortlisted(r));
-        else setReserved(r.id, !getReservation(r).reserved);
-        refreshDiningViews();
+        if (btn.dataset.act === 'shortlist') { setShortlist(r.id, !isShortlisted(r)); refreshDiningViews(); }
+        else if (btn.dataset.act === 'reserve') { setReserved(r.id, !getReservation(r).reserved); refreshDiningViews(); }
+        else if (btn.dataset.act === 'dismiss') { setDismissed(r.id, !isDismissed(r)); refreshAfterDismiss(); }
       });
     });
     grid.appendChild(card);
@@ -2436,6 +2470,7 @@ function showRestaurantDetail(id) {
 
   const res = getReservation(r);
   const sl = isShortlisted(r);
+  const dismissed = isDismissed(r);
   const typeLabels = [];
   if (res.reserved) typeLabels.push(`<span class="dining-tag booked-tag">✅ Reserved${res.note ? ' · ' + escapeHtml(res.note) : ''}</span>`);
   if (sl) typeLabels.push('<span class="dining-tag shortlist-tag">📋 Shortlist</span>');
@@ -2508,6 +2543,7 @@ function showRestaurantDetail(id) {
         <button class="planner-btn${sl ? ' active' : ''}" id="detail-shortlist" type="button">${sl ? '★ Shortlisted' : '☆ Add to shortlist'}</button>
         <button class="planner-btn${res.reserved ? ' active' : ''}" id="detail-reserve" type="button">${res.reserved ? '✅ Reserved' : '＋ Mark reserved'}</button>
         <input type="text" id="detail-resnote" class="planner-note" placeholder="Reservation details — date, time, conf #" value="${escapeHtml(res.note)}">
+        ${CURATOR ? `<button class="planner-btn planner-dismiss${dismissed ? ' active' : ''}" id="detail-dismiss" type="button">${dismissed ? '↩ Restore to list' : '👎 Dismiss (hide everywhere)'}</button>` : ''}
       </div>
       ${topButtonsHtml ? `<div class="detail-action-btns">${topButtonsHtml}</div>` : ''}
     </div>
@@ -2606,6 +2642,14 @@ function showRestaurantDetail(id) {
       }, 300);
     });
   }
+  const dmBtn = document.getElementById('detail-dismiss');
+  if (dmBtn) dmBtn.addEventListener('click', () => {
+    const now = !isDismissed(r);
+    setDismissed(r.id, now);
+    dmBtn.classList.toggle('active', now);
+    dmBtn.textContent = now ? '↩ Restore to list' : '👎 Dismiss (hide everywhere)';
+    refreshAfterDismiss();
+  });
 
   // Mini map
   setTimeout(() => initDetailMap(r), 100);
@@ -2662,8 +2706,8 @@ function initItinerary() {
     const meals = state[`day${day.day}_meals`] || { breakfast: '', dinner: '' };
     const notes = state[`day${day.day}_notes`] || '';
 
-    const bfOpts = BREAKFAST_OPTIONS.map(r => `<option value="${r}" ${meals.breakfast === r ? 'selected' : ''}>${r}</option>`).join('');
-    const dnOpts = DINNER_OPTIONS.map(r => `<option value="${r}" ${meals.dinner === r ? 'selected' : ''}>${r}</option>`).join('');
+    const bfOpts = breakfastOptions().map(r => `<option value="${r}" ${meals.breakfast === r ? 'selected' : ''}>${r}</option>`).join('');
+    const dnOpts = dinnerOptions().map(r => `<option value="${r}" ${meals.dinner === r ? 'selected' : ''}>${r}</option>`).join('');
 
     const showBf = day.day !== 1;
     const showDn = day.day !== 9;
@@ -3119,6 +3163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCountdown();
   initFlightMap();
   initGallery();
+  initCuratorMode();
   initDining();
   initItinerary();
   initActivities();
