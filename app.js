@@ -37,6 +37,7 @@ const RESTAURANTS = [
   { id: 'mrgroupers', name: "Mr. Grouper's", type: 'dinner', lat: 21.790, lng: -72.196, rating: 4.4, reviews: 3000, price: '$-$$', distance: '7.0 mi', driveTime: '15 min', nearby: false, fbPick: true, cuisine: 'Local TCI Seafood' },
   { id: 'lua', name: 'Lua Beach House', type: 'both', lat: 21.7745, lng: -72.2030, rating: 4.9, reviews: 120, price: '$$$', distance: '7.3 mi', driveTime: '15 min', nearby: false, pizza: true, cuisine: 'Global Fusion' },
   { id: 'somewhere', name: 'Somewhere Cafe and Lounge', type: 'both', lat: 21.7854, lng: -72.2045, rating: 4.2, reviews: 857, price: '$$', distance: '7.5 mi', driveTime: '16 min', nearby: false, fbPick: true, cuisine: 'Tex-Mex / Caribbean Beachfront' },
+  { id: 'castaways', name: 'Castaways Conch Bar & Island Grill', type: 'dinner', lat: 21.7944, lng: -72.1787, rating: 4.0, reviews: 908, price: '$-$$', distance: '9.8 mi', driveTime: '20 min', nearby: false, fbPick: true, cuisine: 'Caribbean Grill & Live Music' },
   { id: 'bluewater', name: 'Blue Water Bistro', type: 'dinner', lat: 21.797, lng: -72.199, rating: 4.9, reviews: 685, price: '$$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 1, cuisine: 'Caribbean Seafood' },
   { id: 'cocovan', name: 'Cocovan', type: 'dinner', lat: 21.793, lng: -72.185, rating: 4.7, reviews: 1072, price: '$-$$', distance: '8.0 mi', driveTime: '18 min', nearby: false, fbPick: true, fbMentions: 2, shortlist: true, cuisine: 'Gourmet Street Food' },
   { id: 'baybistro', name: 'Bay Bistro', type: 'both', lat: 21.799, lng: -72.178, rating: 4.5, reviews: 3200, price: '$$-$$$', distance: '8.5 mi', driveTime: '20 min', nearby: false, cuisine: 'Caribbean Beachfront' },
@@ -1171,6 +1172,40 @@ const DETAILS = {
     },
   },
 
+  castaways: {
+    synopsis: 'Casual open-air Grace Bay restaurant with local dishes, burgers, pasta, seafood, live music, and outdoor games. It is useful for this trip because it gives the family a lively dinner without asking the girls to sit through a romantic fine-dining night.',
+    familyNote: 'Strong family fit: live music, cornhole, ring toss, Connect Four, a broad menu, and a kids menu with chicken fingers, fish fingers, pasta marinara, and butter-parmesan pasta. Best as the Saturday Grace Bay dinner after Potcake Place and shopping.',
+    hours: 'Daily 11:00 AM - 10:00 PM; live music most nights around 6:00 PM',
+    phone: '+1 (649) 946-3669',
+    email: '',
+    website: 'https://www.visittci.com/providenciales/castaways',
+    menuLink: 'https://www.visittci.com/providenciales/castaways',
+    reservations: 'Not usually needed. Go earlier if you want dinner before the music crowd builds.',
+    address: '345 Grace Bay Road, Grace Bay',
+    instagram: '',
+    tripadvisor: '',
+    perPerson: '$15-43 plus tax/service',
+    menu: [
+      { section: 'Why It Works', items: [
+        { name: 'Games for the girls while waiting', price: '' },
+        { name: 'Live music and casual outdoor seating', price: '' },
+        { name: 'Burgers, wraps, pasta, jerk chicken, seafood, and local dishes', price: '' },
+      ]},
+      { section: 'Kid-Safe Options', items: [
+        { name: 'Chicken fingers', price: '' },
+        { name: 'Fish fingers', price: '' },
+        { name: 'Pasta marinara or butter-parmesan pasta', price: '' },
+      ]},
+    ],
+    reviews: [
+      { text: 'Visit TCI calls out Castaways as family-friendly because of the onsite games and live music, with a broad menu and classic kids options.', author: 'Visit Turks and Caicos', date: 'May 2026', rating: 4 },
+    ],
+    oliviaOptions: {
+      items: 'Chicken fingers, fish fingers, pasta marinara, butter-parmesan pasta, burgers, fries',
+      source: { type: 'website', url: 'https://www.visittci.com/providenciales/castaways', note: null },
+    },
+  },
+
   baci: {
     synopsis: "Baci Ristorante is Provo's go-to Italian restaurant, tucked in the Harbour Towne plaza near Turtle Cove Marina. The chef-owner brings authentic Italian cooking to the island with handmade pasta, wood-fired preparations, and a wine list that rivals mainland restaurants. The warm, intimate dining room and terrace seating make it a favorite date-night spot, but it's equally welcoming for families.",
     familyNote: "Perfect for a pasta night out if you want Italian but don't feel like cooking at the villa! Elise and Olivia will find plenty of familiar options (pasta, pizza). The atmosphere is upscale-casual — nice enough for a special dinner but relaxed enough for kids. Portions are generous.",
@@ -1348,7 +1383,7 @@ const DETAILS = {
       { text: '"A must-visit in Provo. The food is inventive, portions are generous, and the vibe is just perfect for a vacation night out."', author: 'Megan, Austin', date: 'December 2025', rating: 5 },
     ],
     oliviaOptions: {
-      items: 'Cocovan Burger, Fried Mac & Cheese Balls, Curry Fries, Kids Chicken Quesadilla & Fries, Kids Single Patty Burger & Fries',
+      items: 'Cocovan Burger, Fried Mac & Cheese Balls, Truffle Parmesan Fries, Kids Chicken Quesadilla & Fries, Kids Single Patty Burger & Fries',
       source: { type: 'menu', url: 'https://www.cocovan.tc/menu', note: null },
     },
   },
@@ -1806,6 +1841,230 @@ const ITINERARY = [
     suggestion: 'Check out by 11 AM. Morning at the beach or pool. Return rental car at PLS. United UA1820 PLS \u2192 IAD departs 5:15 PM and arrives 8:31 PM, then drive home from Dulles.' },
 ];
 
+const FAMILY_PLAN_IDS = new Set([
+  'pizzapizza', 'bellaluna', 'lasbrisas', 'omars', 'mrgroupers', 'daconch',
+  'mangoreef', 'caicosbakery', 'shay', 'lemon2go', 'embers', 'cocovan',
+  'terrace', 'baci', 'somewhere', 'castaways', 'hemingways', 'baybistro',
+  'almondtree',
+]);
+
+const BACKUP_PLAN_IDS = new Set([
+  'lasbrisas', 'sweetts', 'bellaluna', 'mrgroupers', 'daconch', 'mangoreef',
+  'shay', 'lemon2go', 'cocovan', 'terrace', 'baci', 'somewhere', 'castaways',
+  'omars', 'almondtree', 'pizzapizza', 'hemingways', 'baybistro',
+]);
+
+const RESEARCH_ONLY_IDS = new Set([
+  'marineroom', 'indigo', 'cocobistro', 'landandsea', 'gracescottage',
+  'infiniti', 'suiren', 'provence', 'coyaba', 'parallel23', 'salina',
+  'bugaloos',
+]);
+
+const AVOID_CURRY_IDS = new Set(['suiren']);
+
+const CUSTOM_BREAKFAST_OPTIONS = [
+  'Travel day - eat before/at airport',
+  'Villa grab-and-go',
+  'Villa / grocery breakfast',
+  'Villa leftovers / easy checkout breakfast',
+  'Graceway pastries',
+  'Cook at villa',
+];
+
+const CUSTOM_DINNER_OPTIONS = [
+  'No dinner plan - travel home',
+  'Villa snacks / groceries',
+  'Villa recovery meal',
+  'Cook at villa - Pasta Night!',
+  'Cook at villa',
+];
+
+const MEAL_PLAN = [
+  {
+    day: 1,
+    breakfast: { primary: 'Travel day - eat before/at airport', note: 'Do not force a breakfast stop on airport day.', alternates: [] },
+    dinner: {
+      primary: 'Pizza Pizza La Terrazza',
+      restaurantId: 'pizzapizza',
+      note: 'Arrival-night pizza tradition. Low stakes after travel.',
+      alternates: [
+        { label: 'Bella Luna Pizzeria', id: 'bellaluna' },
+        { label: 'Las Brisas pizza', id: 'lasbrisas' },
+        { label: 'Villa snacks / groceries' },
+      ],
+    },
+  },
+  {
+    day: 2,
+    breakfast: {
+      primary: 'Las Brisas (walking distance!)',
+      restaurantId: 'lasbrisas',
+      note: 'First easy morning near the villa.',
+      alternates: [
+        { label: 'Villa / grocery breakfast' },
+        { label: "Hemingway's on the Beach", id: 'hemingways' },
+        { label: 'Bay Bistro', id: 'baybistro' },
+      ],
+    },
+    dinner: {
+      primary: "Omar's Beach Hut",
+      restaurantId: 'omars',
+      note: 'Casual beach/local dinner with room for the girls to move around.',
+      alternates: [
+        { label: "Mr. Grouper's", id: 'mrgroupers' },
+        { label: 'Da Conch Shack', id: 'daconch' },
+        { label: 'Mango Reef', id: 'mangoreef' },
+      ],
+    },
+  },
+  {
+    day: 3,
+    breakfast: {
+      primary: 'Caicos Bakery',
+      restaurantId: 'caicosbakery',
+      note: 'Pastries and coffee before a Grace Bay day.',
+      alternates: [
+        { label: 'Shay Cafe & Lounge', id: 'shay' },
+        { label: 'Lemon2Go', id: 'lemon2go' },
+        { label: 'Villa / grocery breakfast' },
+      ],
+    },
+    dinner: {
+      primary: 'Embers',
+      restaurantId: 'embers',
+      note: 'Booked 6:30 PM. The one nicer dinner.',
+      alternates: [
+        { label: 'Cocovan', id: 'cocovan' },
+        { label: 'The Terrace on Grace Bay', id: 'terrace' },
+        { label: 'Baci Ristorante', id: 'baci' },
+      ],
+    },
+  },
+  {
+    day: 4,
+    breakfast: {
+      primary: 'Villa grab-and-go',
+      note: 'Early snorkeling morning. Keep it simple.',
+      alternates: [
+        { label: 'Graceway pastries' },
+        { label: 'Caicos Bakery', id: 'caicosbakery' },
+      ],
+    },
+    dinner: {
+      primary: "Mr. Grouper's",
+      restaurantId: 'mrgroupers',
+      note: 'Casual, reliable, big portions after recovery time.',
+      alternates: [
+        { label: 'Fish Fry' },
+        { label: 'Somewhere Cafe and Lounge', id: 'somewhere' },
+        { label: 'Villa recovery meal' },
+      ],
+    },
+  },
+  {
+    day: 5,
+    breakfast: {
+      primary: 'Las Brisas (walking distance!)',
+      restaurantId: 'lasbrisas',
+      note: 'Second planned Las Brisas breakfast.',
+      alternates: [
+        { label: 'Villa / grocery breakfast' },
+        { label: 'Shay Cafe & Lounge', id: 'shay' },
+        { label: 'Bay Bistro', id: 'baybistro' },
+      ],
+    },
+    dinner: {
+      primary: 'Cocovan',
+      restaurantId: 'cocovan',
+      note: 'Fun food-truck vibe with shareable comfort options.',
+      alternates: [
+        { label: 'Castaways Conch Bar & Island Grill', id: 'castaways' },
+        { label: 'Baci Ristorante', id: 'baci' },
+        { label: 'Bella Luna Pizzeria', id: 'bellaluna' },
+      ],
+    },
+  },
+  {
+    day: 6,
+    breakfast: {
+      primary: 'Shay Cafe & Lounge',
+      restaurantId: 'shay',
+      note: 'Good around Potcake, Grace Bay, and shopping.',
+      alternates: [
+        { label: 'Caicos Bakery', id: 'caicosbakery' },
+        { label: 'Lemon2Go', id: 'lemon2go' },
+        { label: 'Somewhere Cafe breakfast', id: 'somewhere' },
+      ],
+    },
+    dinner: {
+      primary: 'Castaways Conch Bar & Island Grill',
+      restaurantId: 'castaways',
+      note: 'Games, live music, broad casual menu.',
+      alternates: [
+        { label: 'Somewhere Cafe and Lounge', id: 'somewhere' },
+        { label: 'The Terrace on Grace Bay', id: 'terrace' },
+        { label: 'Baci Ristorante', id: 'baci' },
+      ],
+    },
+  },
+  {
+    day: 7,
+    breakfast: {
+      primary: 'Villa / grocery breakfast',
+      note: 'Slow recovery morning.',
+      alternates: [
+        { label: "Hemingway's on the Beach", id: 'hemingways' },
+        { label: 'Somewhere Cafe and Lounge', id: 'somewhere' },
+        { label: 'Bay Bistro', id: 'baybistro' },
+      ],
+    },
+    dinner: {
+      primary: 'Cook at villa - Pasta Night!',
+      note: 'Pasta and meat sauce at the villa.',
+      alternates: [
+        { label: 'Da Conch Shack Sunday music', id: 'daconch' },
+        { label: "Omar's Beach Hut", id: 'omars' },
+        { label: 'Castaways Conch Bar & Island Grill', id: 'castaways' },
+      ],
+    },
+  },
+  {
+    day: 8,
+    breakfast: {
+      primary: "Hemingway's on the Beach",
+      restaurantId: 'hemingways',
+      note: 'Beach breakfast before the horseback finale.',
+      alternates: [
+        { label: 'Shay Cafe & Lounge', id: 'shay' },
+        { label: 'Caicos Bakery', id: 'caicosbakery' },
+        { label: 'Villa / grocery breakfast' },
+      ],
+    },
+    dinner: {
+      primary: 'Bella Luna Pizzeria',
+      restaurantId: 'bellaluna',
+      note: 'Family-friendly pizza/Italian after Provo Ponies.',
+      alternates: [
+        { label: 'Almond Tree', id: 'almondtree' },
+        { label: 'Baci Ristorante', id: 'baci' },
+        { label: 'Pizza Pizza La Terrazza', id: 'pizzapizza' },
+      ],
+    },
+  },
+  {
+    day: 9,
+    breakfast: {
+      primary: 'Villa leftovers / easy checkout breakfast',
+      note: 'Pack first; food should be frictionless.',
+      alternates: [
+        { label: 'Shay Cafe & Lounge', id: 'shay' },
+        { label: 'Caicos Bakery', id: 'caicosbakery' },
+      ],
+    },
+    dinner: { primary: 'No dinner plan - travel home', note: 'Travel home.', alternates: [] },
+  },
+];
+
 // Meal dropdown options are derived from the RESTAURANTS list so they can never
 // drift out of sync again. A couple of legacy labels are preserved verbatim so
 // any already-saved selections keep matching.
@@ -1813,20 +2072,43 @@ function decorateMealLabel(r) {
   if (r.id === 'lasbrisas') return 'Las Brisas (walking distance!)';
   return r.name;
 }
+
+function mealPlanForDay(dayNumber) {
+  return MEAL_PLAN.find(item => item.day === dayNumber);
+}
+
+function getDefaultMeals(dayNumber) {
+  const plan = mealPlanForDay(dayNumber);
+  return {
+    breakfast: plan?.breakfast?.primary || 'Undecided',
+    dinner: plan?.dinner?.primary || 'Undecided',
+  };
+}
+
+function getDayMeals(dayNumber, state = getState()) {
+  const saved = state[`day${dayNumber}_meals`] || {};
+  const defaults = getDefaultMeals(dayNumber);
+  return {
+    breakfast: saved.breakfast || defaults.breakfast,
+    dinner: saved.dinner || defaults.dinner,
+  };
+}
+
 function buildMealOptions(meal) {
   const matches = meal === 'breakfast'
     ? (r) => r.type === 'breakfast' || r.type === 'both'
     : (r) => r.type === 'dinner' || r.type === 'both';
   return RESTAURANTS
-    .filter(r => matches(r) && !isDismissed(r))
+    .filter(r => matches(r) && !isDismissed(r) && !RESEARCH_ONLY_IDS.has(r.id) && !AVOID_CURRY_IDS.has(r.id) && r.id !== 'bugaloos')
     .slice()
     .sort((a, b) => (parseFloat(a.distance) || 99) - (parseFloat(b.distance) || 99))
     .map(decorateMealLabel);
 }
 
 // Computed at render time so dismissals (and any data changes) are always reflected.
-function breakfastOptions() { return ['Undecided', ...buildMealOptions('breakfast'), 'Cook at villa']; }
-function dinnerOptions() { return ['Undecided', ...buildMealOptions('dinner'), 'Cook at villa - Pasta Night!', 'Cook at villa']; }
+function uniqueOptions(items) { return [...new Set(items.filter(Boolean))]; }
+function breakfastOptions() { return uniqueOptions(['Undecided', ...CUSTOM_BREAKFAST_OPTIONS, ...buildMealOptions('breakfast')]); }
+function dinnerOptions() { return uniqueOptions(['Undecided', ...CUSTOM_DINNER_OPTIONS, ...buildMealOptions('dinner'), 'Fish Fry']); }
 
 // --- State Management ---
 const STORAGE_KEY = 'tci-trip-2026';
@@ -1900,6 +2182,7 @@ function applyRemoteState(remoteState) {
 }
 
 function rerenderStatefulViews() {
+  try { renderMealPlanDashboard(); } catch (e) {}
   try { refreshDiningViews(); } catch (e) {}
   try { initItinerary(); } catch (e) {}
   try { renderActivitiesContent(); } catch (e) {}
@@ -2043,8 +2326,89 @@ let activeFilter = 'all';
 let diningMap = null;
 let diningMarkerLayer = null;
 
+function getRestaurantById(id) {
+  return RESTAURANTS.find(r => r.id === id);
+}
+
+function renderMealOptionButton(option, day, meal) {
+  const label = typeof option === 'string' ? option : option.label;
+  const restaurantId = typeof option === 'string' ? '' : (option.id || '');
+  return `<button class="meal-alt-chip" type="button" data-day="${day}" data-meal="${meal}" data-value="${escapeHtml(label)}" ${restaurantId ? `data-restaurant="${restaurantId}"` : ''}>${escapeHtml(label)}</button>`;
+}
+
+function renderMealPrimary(meal, selectedValue) {
+  const clickable = meal.restaurantId ? ` data-restaurant="${meal.restaurantId}"` : '';
+  const current = selectedValue && selectedValue !== meal.primary
+    ? `<span class="meal-current">Selected: ${escapeHtml(selectedValue)}</span>`
+    : '';
+  return `
+    <button class="meal-primary" type="button"${clickable}>
+      <span>${escapeHtml(meal.primary)}</span>
+    </button>
+    ${current}
+    <p>${escapeHtml(meal.note || '')}</p>
+  `;
+}
+
+function renderMealPlanDashboard() {
+  const grid = document.getElementById('family-meal-grid');
+  if (!grid) return;
+  const state = getState();
+
+  grid.innerHTML = MEAL_PLAN.map(plan => {
+    const day = ITINERARY.find(item => item.day === plan.day);
+    const meals = getDayMeals(plan.day, state);
+    const breakfastAlts = (plan.breakfast.alternates || []).map(alt => renderMealOptionButton(alt, plan.day, 'breakfast')).join('');
+    const dinnerAlts = (plan.dinner.alternates || []).map(alt => renderMealOptionButton(alt, plan.day, 'dinner')).join('');
+    const dinnerClass = plan.dinner.restaurantId === 'embers' ? ' booked' : '';
+
+    return `
+      <article class="family-day-card">
+        <header class="family-day-header">
+          <span class="family-day-number">${plan.day}</span>
+          <div>
+            <h3>${escapeHtml(day?.date || '')}</h3>
+            <p>${escapeHtml(day?.title || '')}</p>
+          </div>
+        </header>
+        <div class="family-meal-columns">
+          <section class="family-meal-slot breakfast">
+            <div class="meal-slot-heading">Breakfast</div>
+            ${renderMealPrimary(plan.breakfast, meals.breakfast)}
+            ${breakfastAlts ? `<div class="meal-alternates"><span>Alternates</span>${breakfastAlts}</div>` : ''}
+          </section>
+          <section class="family-meal-slot dinner${dinnerClass}">
+            <div class="meal-slot-heading">Dinner</div>
+            ${renderMealPrimary(plan.dinner, meals.dinner)}
+            ${dinnerAlts ? `<div class="meal-alternates"><span>Alternates</span>${dinnerAlts}</div>` : ''}
+          </section>
+        </div>
+      </article>
+    `;
+  }).join('');
+
+  grid.querySelectorAll('.meal-primary[data-restaurant]').forEach(btn => {
+    btn.addEventListener('click', () => showRestaurantDetail(btn.dataset.restaurant));
+  });
+  grid.querySelectorAll('.meal-alt-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const meals = getDayMeals(Number(btn.dataset.day));
+      meals[btn.dataset.meal] = btn.dataset.value;
+      updateState(`day${btn.dataset.day}_meals`, meals);
+      renderMealPlanDashboard();
+      initItinerary();
+    });
+    btn.addEventListener('dblclick', () => {
+      if (btn.dataset.restaurant) showRestaurantDetail(btn.dataset.restaurant);
+    });
+  });
+}
+
 function restaurantMatchesFilter(r) {
   if (activeFilter === 'all') return true;
+  if (activeFilter === 'familyplan') return FAMILY_PLAN_IDS.has(r.id) && !RESEARCH_ONLY_IDS.has(r.id);
+  if (activeFilter === 'backup') return BACKUP_PLAN_IDS.has(r.id) && !RESEARCH_ONLY_IDS.has(r.id);
+  if (activeFilter === 'research') return RESEARCH_ONLY_IDS.has(r.id) || AVOID_CURRY_IDS.has(r.id);
   if (activeFilter === 'breakfast') return r.type === 'breakfast' || r.type === 'both';
   if (activeFilter === 'dinner') return r.type === 'dinner' || r.type === 'both';
   if (activeFilter === 'nearby') return Boolean(r.nearby);
@@ -2113,6 +2477,7 @@ function updateCuratorBadge() {
   if (CURATOR) badge.textContent = `🛠 Curator mode · ${dismissedCount()} hidden`;
 }
 function refreshAfterDismiss() {
+  renderMealPlanDashboard();
   refreshDiningViews();
   renderTopPicks();
   renderCommunityRecs();
@@ -2287,28 +2652,25 @@ function initDining() {
 function renderTopPicks() {
   const wrap = document.getElementById('top-picks');
   if (!wrap) return;
-
-  const picks = RESTAURANTS
-    .filter(r => r.topPick && !isDismissed(r))
-    .sort((a, b) => (b.fbMentions || 0) - (a.fbMentions || 0) || (b.rating || 0) - (a.rating || 0));
-
+  const featuredIds = ['pizzapizza', 'omars', 'embers', 'mrgroupers', 'cocovan', 'castaways', 'bellaluna', 'shay', 'caicosbakery', 'hemingways'];
+  const picks = featuredIds
+    .map(getRestaurantById)
+    .filter(r => r && !isDismissed(r));
   wrap.innerHTML = picks.map(r => {
     const d = DETAILS[r.id];
-    const why = r.pickReason || (d ? d.synopsis.slice(0, 90) + '…' : '');
-    const badge = r.fbMentions
-      ? `👍 ${r.fbMentions} group rec${r.fbMentions > 1 ? 's' : ''}`
-      : (r.nearby ? '📍 Closest to villa' : '⭐ Top pick');
-    const ratingLabel = r.rating != null ? `${r.rating}★` : 'New';
+    const familyWhy = d ? d.familyNote.slice(0, 120) + '...' : (r.pickReason || '');
+    const familyBadge = r.id === 'embers' ? 'Booked dinner' : (r.type === 'breakfast' ? 'Breakfast plan' : 'Family dinner');
+    const familyRating = r.rating != null ? `${r.rating}` : 'New';
     return `
       <button class="top-pick-card" type="button" data-restaurant="${r.id}">
         <div class="top-pick-head">
           <span class="top-pick-name">${r.name}</span>
-          <span class="top-pick-rating">${ratingLabel}</span>
+          <span class="top-pick-rating">${familyRating}</span>
         </div>
         <span class="top-pick-cuisine">${r.cuisine}</span>
-        <p class="top-pick-why">${why}</p>
+        <p class="top-pick-why">${familyWhy}</p>
         <div class="top-pick-foot">
-          <span class="top-pick-badge">${badge}</span>
+          <span class="top-pick-badge">${familyBadge}</span>
           <span class="top-pick-meta">${r.price} · ${r.driveTime}</span>
         </div>
       </button>`;
@@ -2336,7 +2698,18 @@ function renderCommunityRecs() {
   const wrap = document.getElementById('community-recs');
   if (!wrap) return;
 
-  wrap.innerHTML = COMMUNITY_RECS.map(group => {
+  const groups = [
+    { title: 'Plan A dinners', blurb: 'The actual dinner backbone: casual, family-fit, and varied.',
+      ids: ['pizzapizza', 'omars', 'embers', 'mrgroupers', 'cocovan', 'castaways', 'bellaluna'] },
+    { title: 'Breakfast rotation', blurb: 'Use these to keep mornings decided without overplanning.',
+      ids: ['lasbrisas', 'caicosbakery', 'shay', 'hemingways', 'baybistro', 'somewhere', 'lemon2go'], extras: ['Villa groceries', 'Graceway pastries'] },
+    { title: 'Dinner alternates', blurb: 'Good swaps when weather, energy, or appetite changes.',
+      ids: ['baci', 'somewhere', 'daconch', 'mangoreef', 'terrace', 'almondtree', 'sweetts'] },
+    { title: 'Research only / not Plan A', blurb: 'Nice restaurants, but too date-night, formal, curry-leaning, or less aligned for this family trip.',
+      ids: ['marineroom', 'indigo', 'cocobistro', 'landandsea', 'gracescottage', 'infiniti', 'suiren', 'provence', 'coyaba', 'parallel23', 'salina'] },
+  ];
+
+  wrap.innerHTML = groups.map(group => {
     const chips = group.ids.map(id => {
       const r = RESTAURANTS.find(x => x.id === id);
       if (!r || isDismissed(r)) return '';
@@ -2703,7 +3076,7 @@ function initItinerary() {
   ITINERARY.forEach(day => {
     const card = document.createElement('div');
     card.className = `day-card${day.type ? ' ' + day.type : ''}${day.earlyMorning ? ' early-morning' : ''}`;
-    const meals = state[`day${day.day}_meals`] || { breakfast: '', dinner: '' };
+    const meals = getDayMeals(day.day, state);
     const notes = state[`day${day.day}_notes`] || '';
 
     const bfOpts = breakfastOptions().map(r => `<option value="${r}" ${meals.breakfast === r ? 'selected' : ''}>${r}</option>`).join('');
@@ -2731,9 +3104,10 @@ function initItinerary() {
     card.querySelector('.day-card-header').addEventListener('click', () => card.classList.toggle('open'));
     card.querySelectorAll('select').forEach(sel => {
       sel.addEventListener('change', e => {
-        const m = getState()[`day${e.target.dataset.day}_meals`] || { breakfast: '', dinner: '' };
+        const m = getDayMeals(Number(e.target.dataset.day));
         m[e.target.dataset.meal] = e.target.value;
         updateState(`day${e.target.dataset.day}_meals`, m);
+        renderMealPlanDashboard();
       });
     });
     const ta = card.querySelector('textarea[data-day]');
@@ -3164,6 +3538,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFlightMap();
   initGallery();
   initCuratorMode();
+  renderMealPlanDashboard();
   initDining();
   initItinerary();
   initActivities();
