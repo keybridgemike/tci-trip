@@ -9,14 +9,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <script type="module" crossorigin src="/tci-trip/assets/index-bjId-pcR.js"></script>
-  <link rel="stylesheet" crossorigin href="/tci-trip/assets/index-DwzDLtmm.css">
+  <script type="module" crossorigin src="/tci-trip/assets/index-DiAcrZ-k.js"></script>
+  <link rel="stylesheet" crossorigin href="/tci-trip/assets/index-D9p24KWs.css">
 </head>
 <body>
 
   <nav id="main-nav">
     <div class="nav-brand">TCI 2026</div>
     <div class="nav-links">
+      <a href="#meal-plan">Meal Plan</a>
       <a href="#dining">Dining</a>
       <a href="#itinerary">Itinerary</a>
       <a href="#activities">Activities</a>
@@ -36,15 +37,29 @@
   </section>
 
   <!-- Dining — leads the page -->
-  <section id="dining" class="section">
+  <section id="meal-plan" class="section">
     <div class="container">
-      <h2 class="section-title">Dining</h2>
-      <p class="section-desc">Good breakfast &amp; dinner is the priority. We skip big lunches. Click any restaurant for the full deep-dive.</p>
+      <h2 class="section-title">Family Meal Plan</h2>
+      <p class="section-desc">Breakfast and dinner are decided first. Each day has a plan A plus sane alternates, with Las Brisas kept to two breakfasts and backup duty.</p>
+      <div class="meal-plan-summary">
+        <div><strong>Night 1:</strong> pizza</div>
+        <div><strong>Vibe:</strong> casual family dinners</div>
+        <div><strong>Booked:</strong> Embers, Wed Jun 17 at 6:30 PM</div>
+        <div><strong>Skip:</strong> Indian/curry-leaning picks</div>
+      </div>
+      <div class="family-meal-grid" id="family-meal-grid"></div>
+    </div>
+  </section>
+
+  <section id="dining" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Restaurant Research</h2>
+      <p class="section-desc">Use this as the backup board. Click any restaurant for the deep-dive, but the day-by-day plan above is the source of truth.</p>
       <div class="facebook-recs-card">
         <div class="facebook-recs-header">
-          <span class="facebook-recs-kicker">Community recs distilled</span>
-          <h3>What the Facebook groups recommend</h3>
-          <p class="facebook-recs-intro">Grouped by vibe from the group threads. Tap any name to open its full deep-dive.</p>
+          <span class="facebook-recs-kicker">Family-fit recs distilled</span>
+          <h3>Backups and research notes</h3>
+          <p class="facebook-recs-intro">Grouped by how useful they are for this family trip, not by hype alone.</p>
         </div>
         <div class="facebook-recs-grid" id="community-recs"></div>
         <p class="facebook-recs-footnote">Budget note from the thread: restaurant prices add up quickly after tax, service, and tip, so groceries for breakfast/lunch can save a lot. Late June sunset is around 7:30 PM, so 5:30 is early dinner, not sunset. <strong>Heads up:</strong> several locals warned that some restaurants close in the off-season — double-check openings for your exact dates before booking. (One correction from the thread: <strong>Indigo</strong> is at Wymara Resort in Grace Bay, not The Shore Club.)</p>
@@ -52,13 +67,16 @@
       <div class="top-picks-section">
         <div class="top-picks-header">
           <span class="top-picks-kicker">⭐ Start here</span>
-          <h3>Top Picks</h3>
-          <p>The highest-signal options — most-recommended in the group thread, plus the closest to the villa. Tap one to jump straight to the deep-dive, or use the ⭐ Top Picks filter below to narrow the full list and map.</p>
+          <h3>Family Plan Restaurants</h3>
+          <p>These are the places that actually fit the schedule: pizza night, casual local dinners, breakfast stops, Embers, and backups.</p>
         </div>
         <div class="top-picks-grid" id="top-picks"></div>
       </div>
       <div class="dining-filters">
         <button class="dining-filter-btn active" data-filter="all">All</button>
+        <button class="dining-filter-btn" data-filter="familyplan">Family Plan</button>
+        <button class="dining-filter-btn" data-filter="backup">Backups</button>
+        <button class="dining-filter-btn" data-filter="research">Research Only</button>
         <button class="dining-filter-btn" data-filter="toppick">⭐ Top Picks</button>
         <button class="dining-filter-btn" data-filter="shortlist">📋 Shortlist</button>
         <button class="dining-filter-btn" data-filter="breakfast">Breakfast</button>
