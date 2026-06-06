@@ -1824,25 +1824,24 @@ const ITINERARY = [
     suggestion: 'No alarm! Sleep in and enjoy a lazy morning. Stroll to Sapodilla Bay Beach (3 min walk). Afternoon pool time \u2014 try the villa\'s kayaks or paddleboards on Chalk Sound.' },
   { day: 3, date: 'Wed, Jun 17', title: 'Sleep In & Parasailing',
     suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach; browse the shops after. Dinner: \u2705 Embers BOOKED \u2014 6:30 PM, table for 4 on the covered patio (OpenTable conf. #26974 \u00b7 (649) 431-5161). Open-fire grill, big flavors.' },
-  { day: 4, date: 'Thu, Jun 18', title: '\u2600\uFE0F Early Morning \u2014 Snorkeling Cruise',
-    suggestion: 'Early start (the only truly necessary one). Half-day Caicos Dream Tours snorkeling cruise departs 9 AM (~4 hrs) \u2014 barrier reef, then Half Moon Bay with iguanas. Lunch included on the boat. Afternoon: pool & nap recovery. Keep dinner easy after a big day \u2014 a casual nearby spot or a villa night.',
-    earlyMorning: true },
+  { day: 4, date: 'Thu, Jun 18', title: 'Snorkeling & Beach Day',
+    suggestion: 'Keep this flexible rather than treating it like an early-morning push. Do snorkeling or beach time when it fits the day, then recover with pool time. Dinner stays casual and reliable at Mr. Grouper\'s.' },
   { day: 5, date: 'Fri, Jun 19', title: 'Sleep In & Beach Day',
     suggestion: 'Sleep in! Try Taylor Bay Beach \u2014 calm shallow water, perfect for Olivia. Or revisit Grace Bay. Lua Beach House Friday Pizza Night could be fun tonight!' },
   { day: 6, date: 'Sat, Jun 20', title: '\u2600\uFE0F Earlyish \u2014 Potcake Puppy Walk',
-    suggestion: 'The one early-ish start that\u2019s worth it: Potcake Place puppy walk on Grace Bay Beach (Olivia & Elise will love this). Arrive ~9:30 AM \u2014 open Mon\u2013Sat from 10 AM, first-come and the line builds early. Walk a rescue pup, then stay for Grace Bay beach + shopping & ice cream. Kayaks/SUPs are always free at the villa on Chalk Sound if you still want to paddle. Tonight: grab a Top Pick (Marine Room, Indigo or Coco Bistro).',
+    suggestion: 'The one early-ish start that\u2019s worth it: Potcake Place puppy walk on Grace Bay Beach (Olivia & Elise will love this). Arrive ~9:30 AM \u2014 open Mon\u2013Sat from 10 AM, first-come and the line builds early. Walk a rescue pup, then stay for Grace Bay beach + shopping & ice cream. Dinner is Castaways: games, live music, and casual food.',
     earlyMorning: true },
   { day: 7, date: 'Sun, Jun 21', title: 'Chill Day \u2014 Pasta Night at the Villa',
     suggestion: 'Sleep in \u2014 this is your recovery day. Pool morning, maybe drive around the island: Chalk Sound lookout, Blue Hills area. Tonight: cook pasta & meat sauce at the villa! Hit up a local grocery (IGA or Graceway Gourmet).' },
   { day: 8, date: 'Mon, Jun 22', title: 'Last Full Day \u2014 \ud83d\udc0e Horseback Finale',
-    suggestion: 'Sleep in, then an easy beach + pool morning. BOOKED: Provo Ponies group ride for 4 at 3:30 PM (allow 2\u20132.5 hrs) on Long Bay Beach \u2014 ride right into the shallow turquoise water! Self-drive to 32 Dolphin Lane, Long Bay Hills; arrive at 3:30 sharp, not earlier. Wear closed-toe shoes (no flip-flops) + light long pants/leggings; you can get wet to your thighs. Bring a reusable water bottle, sunscreen, hat & cash for tips. Conf. B-KD8PY9M \u00b7 WhatsApp +1 649-241-6350. Clean up after, then a farewell Top Pick dinner.',
+    suggestion: 'Sleep in, then an easy beach + pool morning. BOOKED: Provo Ponies group ride for 4 at 3:30 PM (allow 2\u20132.5 hrs) on Long Bay Beach \u2014 ride right into the shallow turquoise water! Self-drive to 32 Dolphin Lane, Long Bay Hills; arrive at 3:30 sharp, not earlier. Wear closed-toe shoes (no flip-flops) + light long pants/leggings; you can get wet to your thighs. Bring a reusable water bottle, sunscreen, hat & cash for tips. Conf. B-KD8PY9M \u00b7 WhatsApp +1 649-241-6350. Clean up after, then Almond Tree for an easy Long Bay dinner.',
     earlyMorning: false },
   { day: 9, date: 'Tue, Jun 23', title: 'Departure Day', type: 'departure-day',
     suggestion: 'Check out by 11 AM. Morning at the beach or pool. Return rental car at PLS. United UA1820 PLS \u2192 IAD departs 5:15 PM and arrives 8:31 PM, then drive home from Dulles.' },
 ];
 
 const FAMILY_PLAN_IDS = new Set([
-  'pizzapizza', 'bellaluna', 'lasbrisas', 'omars', 'mrgroupers', 'daconch',
+  'bellaluna', 'lasbrisas', 'omars', 'mrgroupers', 'daconch',
   'mangoreef', 'caicosbakery', 'shay', 'lemon2go', 'embers', 'cocovan',
   'terrace', 'baci', 'somewhere', 'castaways', 'hemingways', 'baybistro',
   'almondtree',
@@ -1851,13 +1850,13 @@ const FAMILY_PLAN_IDS = new Set([
 const BACKUP_PLAN_IDS = new Set([
   'lasbrisas', 'sweetts', 'bellaluna', 'mrgroupers', 'daconch', 'mangoreef',
   'shay', 'lemon2go', 'cocovan', 'terrace', 'baci', 'somewhere', 'castaways',
-  'omars', 'almondtree', 'pizzapizza', 'hemingways', 'baybistro',
+  'omars', 'almondtree', 'hemingways', 'baybistro',
 ]);
 
 const RESEARCH_ONLY_IDS = new Set([
   'marineroom', 'indigo', 'cocobistro', 'landandsea', 'gracescottage',
   'infiniti', 'suiren', 'provence', 'coyaba', 'parallel23', 'salina',
-  'bugaloos',
+  'bugaloos', 'pizzapizza',
 ]);
 
 const AVOID_CURRY_IDS = new Set(['suiren']);
@@ -1884,12 +1883,12 @@ const MEAL_PLAN = [
     day: 1,
     breakfast: { primary: 'Travel day - eat before/at airport', note: 'Do not force a breakfast stop on airport day.', alternates: [] },
     dinner: {
-      primary: 'Pizza Pizza La Terrazza',
-      restaurantId: 'pizzapizza',
-      note: 'Arrival-night pizza tradition. Low stakes after travel.',
+      primary: 'Bella Luna Pizzeria',
+      restaurantId: 'bellaluna',
+      note: 'Arrival-night pizza tradition, but with a real website, stronger reviews, and a better family-fit read.',
       alternates: [
-        { label: 'Bella Luna Pizzeria', id: 'bellaluna' },
         { label: 'Las Brisas pizza', id: 'lasbrisas' },
+        { label: 'Baci Ristorante', id: 'baci' },
         { label: 'Villa snacks / groceries' },
       ],
     },
@@ -1943,10 +1942,12 @@ const MEAL_PLAN = [
   {
     day: 4,
     breakfast: {
-      primary: 'Villa grab-and-go',
-      note: 'Early snorkeling morning. Keep it simple.',
+      primary: "Hemingway's on the Beach",
+      restaurantId: 'hemingways',
+      note: 'No early snorkeling scramble. Make breakfast a real beach stop.',
       alternates: [
-        { label: 'Graceway pastries' },
+        { label: 'Bay Bistro', id: 'baybistro' },
+        { label: 'Somewhere Cafe breakfast', id: 'somewhere' },
         { label: 'Caicos Bakery', id: 'caicosbakery' },
       ],
     },
@@ -2010,12 +2011,13 @@ const MEAL_PLAN = [
   {
     day: 7,
     breakfast: {
-      primary: 'Villa / grocery breakfast',
-      note: 'Slow recovery morning.',
+      primary: 'Bay Bistro',
+      restaurantId: 'baybistro',
+      note: 'Slow morning, but still out for a beach breakfast.',
       alternates: [
         { label: "Hemingway's on the Beach", id: 'hemingways' },
         { label: 'Somewhere Cafe and Lounge', id: 'somewhere' },
-        { label: 'Bay Bistro', id: 'baybistro' },
+        { label: 'Villa / grocery breakfast' },
       ],
     },
     dinner: {
@@ -2041,24 +2043,25 @@ const MEAL_PLAN = [
       ],
     },
     dinner: {
-      primary: 'Bella Luna Pizzeria',
-      restaurantId: 'bellaluna',
-      note: 'Family-friendly pizza/Italian after Provo Ponies.',
+      primary: 'Almond Tree',
+      restaurantId: 'almondtree',
+      note: 'Easy Long Bay dinner after Provo Ponies: pizza, fried chicken, comfort food, and live music energy.',
       alternates: [
-        { label: 'Almond Tree', id: 'almondtree' },
         { label: 'Baci Ristorante', id: 'baci' },
-        { label: 'Pizza Pizza La Terrazza', id: 'pizzapizza' },
+        { label: 'Bella Luna Pizzeria', id: 'bellaluna' },
+        { label: 'Castaways Conch Bar & Island Grill', id: 'castaways' },
       ],
     },
   },
   {
     day: 9,
     breakfast: {
-      primary: 'Villa leftovers / easy checkout breakfast',
-      note: 'Pack first; food should be frictionless.',
+      primary: 'Caicos Bakery',
+      restaurantId: 'caicosbakery',
+      note: 'Grab pastries/coffee if packing is under control; otherwise keep the checkout morning simple.',
       alternates: [
         { label: 'Shay Cafe & Lounge', id: 'shay' },
-        { label: 'Caicos Bakery', id: 'caicosbakery' },
+        { label: 'Villa leftovers / easy checkout breakfast' },
       ],
     },
     dinner: { primary: 'No dinner plan - travel home', note: 'Travel home.', alternates: [] },
@@ -2652,7 +2655,7 @@ function initDining() {
 function renderTopPicks() {
   const wrap = document.getElementById('top-picks');
   if (!wrap) return;
-  const featuredIds = ['pizzapizza', 'omars', 'embers', 'mrgroupers', 'cocovan', 'castaways', 'bellaluna', 'shay', 'caicosbakery', 'hemingways'];
+  const featuredIds = ['bellaluna', 'omars', 'embers', 'mrgroupers', 'cocovan', 'castaways', 'almondtree', 'shay', 'caicosbakery', 'hemingways'];
   const picks = featuredIds
     .map(getRestaurantById)
     .filter(r => r && !isDismissed(r));
@@ -2700,7 +2703,7 @@ function renderCommunityRecs() {
 
   const groups = [
     { title: 'Plan A dinners', blurb: 'The actual dinner backbone: casual, family-fit, and varied.',
-      ids: ['pizzapizza', 'omars', 'embers', 'mrgroupers', 'cocovan', 'castaways', 'bellaluna'] },
+      ids: ['bellaluna', 'omars', 'embers', 'mrgroupers', 'cocovan', 'castaways', 'almondtree'] },
     { title: 'Breakfast rotation', blurb: 'Use these to keep mornings decided without overplanning.',
       ids: ['lasbrisas', 'caicosbakery', 'shay', 'hemingways', 'baybistro', 'somewhere', 'lemon2go'], extras: ['Villa groceries', 'Graceway pastries'] },
     { title: 'Dinner alternates', blurb: 'Good swaps when weather, energy, or appetite changes.',
