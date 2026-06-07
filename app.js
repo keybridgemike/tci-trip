@@ -65,7 +65,7 @@ const RESTAURANTS = [
   { id: 'embers', name: 'Embers', type: 'dinner', lat: 21.7895, lng: -72.1985, rating: 4.7, reviews: 700, price: '$$-$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, booked: 'Wed Jun 17 · 6:30 PM', pickReason: 'Open-fire grill, big flavors, strong value — no view, all food.', cuisine: 'Open-Fire Grill' },
   { id: 'pelicanbay', name: 'Pelican Bay Restaurant & Bar', type: 'both', lat: 21.7985, lng: -72.1845, rating: 4.1, reviews: null, price: '$$-$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 3, topPick: true, shortlist: true, pickReason: 'Beachfront at Royal West Indies — daily happy hour, themed nights & great conch.', cuisine: 'Caribbean Beachfront' },
   { id: 'salina', name: 'Salina', type: 'dinner', lat: 21.7970, lng: -72.1900, rating: null, reviews: null, price: '$$$', distance: '9.5 mi', driveTime: '20 min', nearby: false, fbPick: true, fbMentions: 2, cuisine: 'Seafood & Raw Bar' },
-  { id: 'almondtree', name: 'Almond Tree', type: 'dinner', lat: 21.7805, lng: -72.1628, rating: 4.7, reviews: 136, price: '$$-$$$', distance: '11.5 mi', driveTime: '24 min', nearby: false, pizza: true, fbPick: true, fbMentions: 2, cuisine: 'Comfort Food & Wood-Fired Pizza' },
+  { id: 'almondtree', name: 'Almond Tree', type: 'dinner', lat: 21.7805, lng: -72.1628, rating: 4.7, reviews: 136, price: '$$-$$$', distance: '11.5 mi', driveTime: '24 min', nearby: false, pizza: true, fbPick: true, fbMentions: 2, booked: 'Sat Jun 20 · 7:00 PM · 4 standard seating', cuisine: 'Comfort Food & Wood-Fired Pizza' },
   { id: 'suiren', name: 'SUI-REN', type: 'dinner', lat: 21.7808, lng: -72.1620, rating: 4.3, reviews: null, price: '$$$', distance: '11.5 mi', driveTime: '24 min', nearby: false, fbPick: true, fbMentions: 2, cuisine: 'Asian-Peruvian / Sushi' },
 ];
 
@@ -210,7 +210,7 @@ const DETAILS = {
     hours: 'Daily 5:30-10:00 PM; live music Thu-Sun ~6-9 PM',
     website: 'https://theshoreclubtc.com/dining/',
     menuLink: 'https://theshoreclubtc.com/dining/',
-    reservations: 'Recommended; popular nights book up well ahead.',
+    reservations: 'BOOKED — Sat, Jun 20 at 7:00 PM for 4, standard seating.',
     address: 'The Shore Club, Long Bay Beach, Providenciales',
     perPerson: '$45-85',
     reviews: [
@@ -1824,17 +1824,17 @@ const ITINERARY = [
     suggestion: 'No alarm! Sleep in and enjoy a lazy morning. Stroll to Sapodilla Bay Beach (3 min walk). Afternoon pool time \u2014 try the villa\'s kayaks or paddleboards on Chalk Sound.' },
   { day: 3, date: 'Wed, Jun 17', title: 'Sleep In & Parasailing',
     suggestion: 'Sleep in \u2014 grab a late breakfast. Afternoon parasailing at Grace Bay (Mike, Elise & Olivia). Carrie can relax on Grace Bay Beach; browse the shops after. Dinner: \u2705 Embers BOOKED \u2014 6:30 PM, table for 4 on the covered patio (OpenTable conf. #26974 \u00b7 (649) 431-5161). Open-fire grill, big flavors.' },
-  { day: 4, date: 'Thu, Jun 18', title: 'Snorkeling & Beach Day',
-    suggestion: 'Keep this flexible rather than treating it like an early-morning push. Do snorkeling or beach time when it fits the day, then recover with pool time. Dinner stays casual and reliable at Mr. Grouper\'s.' },
+  { day: 4, date: 'Thu, Jun 18', title: 'Afternoon Boat & Snorkel',
+    suggestion: 'Target a half-day afternoon boat/snorkel trip, roughly 1:30-5:30 PM. Eat a real breakfast, keep lunch light before boarding, and do not plan a proper sit-down dinner after four hours on the water. This is a shower, pool, snacks, takeout, or very easy nearby dinner night.' },
   { day: 5, date: 'Fri, Jun 19', title: 'Sleep In & Beach Day',
     suggestion: 'Sleep in! Try Taylor Bay Beach \u2014 calm shallow water, perfect for Olivia. Or revisit Grace Bay. Lua Beach House Friday Pizza Night could be fun tonight!' },
   { day: 6, date: 'Sat, Jun 20', title: '\u2600\uFE0F Earlyish \u2014 Potcake Puppy Walk',
-    suggestion: 'The one early-ish start that\u2019s worth it: Potcake Place puppy walk on Grace Bay Beach (Olivia & Elise will love this). Arrive ~9:30 AM \u2014 open Mon\u2013Sat from 10 AM, first-come and the line builds early. Walk a rescue pup, then stay for Grace Bay beach + shopping & ice cream. Dinner is Castaways: games, live music, and casual food.',
+    suggestion: 'The one early-ish start that\u2019s worth it: Potcake Place puppy walk on Grace Bay Beach (Olivia & Elise will love this). Arrive ~9:30 AM \u2014 open Mon\u2013Sat from 10 AM, first-come and the line builds early. Walk a rescue pup, then stay for Grace Bay beach + shopping & ice cream. Dinner is BOOKED at Almond Tree, 7:00 PM for 4, standard seating.',
     earlyMorning: true },
   { day: 7, date: 'Sun, Jun 21', title: 'Chill Day \u2014 Pasta Night at the Villa',
     suggestion: 'Sleep in \u2014 this is your recovery day. Pool morning, maybe drive around the island: Chalk Sound lookout, Blue Hills area. Tonight: cook pasta & meat sauce at the villa! Hit up a local grocery (IGA or Graceway Gourmet).' },
   { day: 8, date: 'Mon, Jun 22', title: 'Last Full Day \u2014 \ud83d\udc0e Horseback Finale',
-    suggestion: 'Sleep in, then an easy beach + pool morning. BOOKED: Provo Ponies group ride for 4 at 3:30 PM (allow 2\u20132.5 hrs) on Long Bay Beach \u2014 ride right into the shallow turquoise water! Self-drive to 32 Dolphin Lane, Long Bay Hills; arrive at 3:30 sharp, not earlier. Wear closed-toe shoes (no flip-flops) + light long pants/leggings; you can get wet to your thighs. Bring a reusable water bottle, sunscreen, hat & cash for tips. Conf. B-KD8PY9M \u00b7 WhatsApp +1 649-241-6350. Clean up after, then Almond Tree for an easy Long Bay dinner.',
+    suggestion: 'Sleep in, then an easy beach + pool morning. BOOKED: Provo Ponies group ride for 4 at 3:30 PM (allow 2\u20132.5 hrs) on Long Bay Beach \u2014 ride right into the shallow turquoise water! Self-drive to 32 Dolphin Lane, Long Bay Hills; arrive at 3:30 sharp, not earlier. Wear closed-toe shoes (no flip-flops) + light long pants/leggings; you can get wet to your thighs. Bring a reusable water bottle, sunscreen, hat & cash for tips. Conf. B-KD8PY9M \u00b7 WhatsApp +1 649-241-6350. Clean up after, then keep dinner casual in Grace Bay or Turtle Cove.',
     earlyMorning: false },
   { day: 9, date: 'Tue, Jun 23', title: 'Departure Day', type: 'departure-day',
     suggestion: 'Check out by 11 AM. Morning at the beach or pool. Return rental car at PLS. United UA1820 PLS \u2192 IAD departs 5:15 PM and arrives 8:31 PM, then drive home from Dulles.' },
@@ -1952,13 +1952,12 @@ const MEAL_PLAN = [
       ],
     },
     dinner: {
-      primary: "Mr. Grouper's",
-      restaurantId: 'mrgroupers',
-      note: 'Casual, reliable, big portions after recovery time.',
+      primary: 'Villa recovery meal',
+      note: 'After a 1:30-5:30 boat/snorkel trip, do not make this a real dinner-out night. Shower, pool, snacks, leftovers, or takeout.',
       alternates: [
-        { label: 'Fish Fry' },
+        { label: "Sweet T's", id: 'sweetts' },
+        { label: 'Las Brisas pizza', id: 'lasbrisas' },
         { label: 'Somewhere Cafe and Lounge', id: 'somewhere' },
-        { label: 'Villa recovery meal' },
       ],
     },
   },
@@ -1998,12 +1997,12 @@ const MEAL_PLAN = [
       ],
     },
     dinner: {
-      primary: 'Castaways Conch Bar & Island Grill',
-      restaurantId: 'castaways',
-      note: 'Games, live music, broad casual menu.',
+      primary: 'Almond Tree',
+      restaurantId: 'almondtree',
+      note: 'BOOKED: 7:00 PM for 4, standard seating. Good kid-safe comfort food and live music energy.',
       alternates: [
+        { label: 'Castaways Conch Bar & Island Grill', id: 'castaways' },
         { label: 'Somewhere Cafe and Lounge', id: 'somewhere' },
-        { label: 'The Terrace on Grace Bay', id: 'terrace' },
         { label: 'Baci Ristorante', id: 'baci' },
       ],
     },
@@ -2043,13 +2042,13 @@ const MEAL_PLAN = [
       ],
     },
     dinner: {
-      primary: 'Almond Tree',
-      restaurantId: 'almondtree',
-      note: 'Easy Long Bay dinner after Provo Ponies: pizza, fried chicken, comfort food, and live music energy.',
+      primary: 'Castaways Conch Bar & Island Grill',
+      restaurantId: 'castaways',
+      note: 'Casual farewell after Provo Ponies: games, live music, broad menu, no fine-dining pressure.',
       alternates: [
+        { label: 'The Terrace on Grace Bay', id: 'terrace' },
         { label: 'Baci Ristorante', id: 'baci' },
         { label: 'Bella Luna Pizzeria', id: 'bellaluna' },
-        { label: 'Castaways Conch Bar & Island Grill', id: 'castaways' },
       ],
     },
   },
@@ -2363,7 +2362,7 @@ function renderMealPlanDashboard() {
     const meals = getDayMeals(plan.day, state);
     const breakfastAlts = (plan.breakfast.alternates || []).map(alt => renderMealOptionButton(alt, plan.day, 'breakfast')).join('');
     const dinnerAlts = (plan.dinner.alternates || []).map(alt => renderMealOptionButton(alt, plan.day, 'dinner')).join('');
-    const dinnerClass = plan.dinner.restaurantId === 'embers' ? ' booked' : '';
+    const dinnerClass = getRestaurantById(plan.dinner.restaurantId)?.booked ? ' booked' : '';
 
     return `
       <article class="family-day-card">
@@ -3135,9 +3134,9 @@ function renderActivitiesContent() {
         { name: 'Parasailing TCI', info: 'Well-reviewed, beachfront pickup', website: '', tripadvisor: '' },
       ]},
     { id: 'snorkeling', icon: '\ud83e\udd3f', title: 'Snorkeling Boat Tour', who: 'Everyone', priority: true, hostRecommended: true,
-      desc: 'Half-day cruise to the barrier reef and Half Moon Bay. See sea turtles, stingrays, and iguanas on the beach.',
+      desc: 'Afternoon half-day cruise to the barrier reef and Half Moon Bay, ideally around 1:30-5:30 PM. Plan a real breakfast, light lunch, and an intentionally easy recovery dinner afterward.',
       providers: [
-        { name: 'Caicos Dream Tours', info: '9 AM departure, ~4 hours, lunch included', website: 'https://www.caicosdreamtours.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d2073175' },
+        { name: 'Caicos Dream Tours', info: 'Afternoon half-day trips are typically ~4 hours; confirm exact time when booking.', website: 'https://www.caicosdreamtours.com/', tripadvisor: 'https://www.tripadvisor.com/Attraction_Review-g147399-d2073175' },
       ]},
     { id: 'kayak', icon: '\ud83d\udef6', title: 'Kayak / Paddle Board Eco-Tour', who: 'Everyone', hostRecommended: true,
       desc: 'Paddle through mangroves and visit the iguana sanctuary at Little Water Cay. The host specifically recommended kayaking and paddle boarding; the villa/Chalk Sound area also makes this an easy near-home option.',
