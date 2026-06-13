@@ -6,6 +6,7 @@
     "dev": "vite --port 5173 --strictPort",
     "dev:15176": "vite --port 15176 --strictPort",
     "build": "vite build",
+    "deploy:live": "bash scripts/deploy-live.sh",
     "preview": "vite preview",
     "preview:15176": "vite preview --port 15176 --strictPort"
   },
